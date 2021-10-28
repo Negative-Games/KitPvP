@@ -36,17 +36,25 @@ public class APIImpl extends KitPvPAPI {
     private final AbilityItemManager abilityItemManager;
     private final CosmeticManager cosmeticManager;
     private final KitManager kitManager;
-    private ArrayList<Object> disableableCache = new ArrayList<>();
+    private final CombatManager combatManager;
+
+    private final ArrayList<Object> disableableCache = new ArrayList<>();
 
     public APIImpl(JavaPlugin plugin) {
         profileManager = new ProfileManagerImpl(plugin);
         attemptAddDisableable(profileManager);
+
         abilityItemManager = new AbilityItemManagerImpl();
         attemptAddDisableable(abilityItemManager);
+
         cosmeticManager = new CosmeticManagerImpl();
         attemptAddDisableable(cosmeticManager);
+
         kitManager = new KitManagerImpl();
         attemptAddDisableable(kitManager);
+
+        combatManager = new CombatManagerImpl(plugin);
+        attemptAddDisableable(combatManager);
     }
 
     @Override
@@ -67,6 +75,11 @@ public class APIImpl extends KitPvPAPI {
     @Override
     public KitManager getKitManager() {
         return kitManager;
+    }
+
+    @Override
+    public CombatManager getCombatManager() {
+        return combatManager;
     }
 
     @Override

@@ -32,6 +32,8 @@ import org.bukkit.entity.Player;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @UtilityClass
 public class Utils {
@@ -90,6 +92,14 @@ public class Utils {
     public List<Player> getOnlinePlayers() {
         List<? extends Player> collect = new ArrayList<Player>(Bukkit.getOnlinePlayers());
         return new ArrayList<>(collect);
+    }
+
+    public Optional<Player> getPlayer(String name) {
+        return Optional.ofNullable(Bukkit.getPlayer(name));
+    }
+
+    public Optional<Player> getPlayer(UUID uuid) {
+        return Optional.ofNullable(Bukkit.getPlayer(uuid));
     }
 
     /**

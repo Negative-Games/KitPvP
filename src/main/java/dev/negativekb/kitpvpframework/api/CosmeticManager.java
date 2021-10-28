@@ -39,6 +39,8 @@ import java.util.ArrayList;
  * <p>
  * This module is the manager for cosmetics such as {@link KillEffect},
  * {@link KillMessage} or {@link KillSound}.
+ *
+ * You can access this module by using {@link KitPvPAPI#getCosmeticManager()}
  */
 public interface CosmeticManager extends Disableable {
 
