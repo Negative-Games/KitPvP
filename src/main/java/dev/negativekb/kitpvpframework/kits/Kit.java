@@ -82,16 +82,16 @@ public abstract class Kit {
 
         PlayerInventory inv = player.getInventory();
 
-        if (getHelmet().getType() != Material.AIR || getHelmet() != null)
+        if (getHelmet() != null && getHelmet().getType() != Material.AIR)
             inv.setHelmet(getHelmet());
 
-        if (getChestplate().getType() != Material.AIR || getChestplate() != null)
+        if (getChestplate() != null && getChestplate().getType() != Material.AIR)
             inv.setChestplate(getChestplate());
 
-        if (getLeggings().getType() != Material.AIR || getLeggings() != null)
+        if (getLeggings() != null && getLeggings().getType() != Material.AIR)
             inv.setLeggings(getLeggings());
 
-        if (getBoots().getType() != Material.AIR || getBoots() != null)
+        if (getBoots() != null && getBoots().getType() != Material.AIR)
             inv.setBoots(getBoots());
 
         if (!kitContents().isEmpty() || kitContents() != null)

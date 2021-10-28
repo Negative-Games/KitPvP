@@ -1,7 +1,5 @@
 package dev.negativekb.kitpvpframework.commands;
 
-import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.ProfileManager;
 import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;
 import org.bukkit.command.CommandSender;
