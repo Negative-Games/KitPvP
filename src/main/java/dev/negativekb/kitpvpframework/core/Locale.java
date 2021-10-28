@@ -31,6 +31,9 @@ public enum Locale {
     VIEW_KIT_SYNTAX_ERROR(Collections.singletonList("&cInvalid syntax! Do /viewkit <kit>")),
     VIEW_KIT_INVALID_KIT(Collections.singletonList("&cInvalid kit name `&e%name%&c`!")),
 
+    KIT_CANNOT_AFFORD(Collections.singletonList("&cYou cannot afford this Kit!")),
+    KIT_PURCHASED(Collections.singletonList("&aYou have purchased the &e%name% &aKit!")),
+
     ;
     private final List<String> defaultMessage;
     private Message message;

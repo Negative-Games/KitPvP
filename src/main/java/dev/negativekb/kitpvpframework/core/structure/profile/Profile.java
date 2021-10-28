@@ -2,7 +2,11 @@ package dev.negativekb.kitpvpframework.core.structure.profile;
 
 import dev.negativekb.kitpvpframework.kits.Kits;
 import lombok.Data;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -21,6 +25,15 @@ public class Profile {
     private long coins;
     private ProfileCosmeticStatus cosmetics;
     private Kits currentKit;
+    private ArrayList<Kits> unlockedKits;
+
+    public Player getPlayer() {
+        return Bukkit.getPlayer(uniqueID);
+    }
+
+    public OfflinePlayer getOfflinePlayer() {
+        return Bukkit.getOfflinePlayer(uniqueID);
+    }
 
     public void addCoins(long amount) {
         setCoins(getCoins() + amount);
@@ -28,8 +41,18 @@ public class Profile {
 
     public void removeCoins(long amount) {
         setCoins(getCoins() - amount);
-        if (getCoins() >= 0)
+        if (getCoins() < 0)
             setCoins(0);
+    }
+
+    public boolean transactCoins(long amount) {
+        boolean hasEnough = getCoins() >= amount;
+        if (hasEnough) {
+            removeCoins(amount);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void addDeaths(int amount) {
@@ -42,5 +65,24 @@ public class Profile {
 
     public void addKillStreak(int amount) {
         setKillStreak(getKillStreak() + amount);
+    }
+
+    public void addUnlockedKit(Kits type) {
+        if (unlockedKits == null)
+            unlockedKits = new ArrayList<>();
+
+        if (unlockedKits.contains(type))
+            return;
+
+        unlockedKits.add(type);
+    }
+
+    public void removeUnlockedKit(Kits type) {
+        if (unlockedKits == null)
+            return;
+
+        unlockedKits.remove(type);
+        if (unlockedKits.isEmpty())
+            setUnlockedKits(null);
     }
 }
