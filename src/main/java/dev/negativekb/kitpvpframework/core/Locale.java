@@ -64,7 +64,14 @@ public enum Locale {
     SPAWN_SUCCESS(Collections.singletonList("&aSuccessfully teleported to spawn!")),
     SPAWN_ALREADY_TRANSPORTING(Collections.singletonList("&cYou are already going through a spawn transportation.")),
     SPAWN_CANCELLED(Collections.singletonList("&cYour spawn transportation has been cancelled due to movement or being attacked.")),
-    SET_SPAWN_SUCCESS(Collections.singletonList("&aYou have successfully set the server's spawn at your location."));
+    SET_SPAWN_SUCCESS(Collections.singletonList("&aYou have successfully set the server's spawn at your location.")),
+
+    COMBAT_OUT_OF_COMBAT(Collections.singletonList("&aYou are now out of combat.")),
+    COMBAT_TIMER(Collections.singletonList("&7You are still in combat for &c%seconds% &7second(s).")),
+    COMBAT_ENGAGED(Collections.singletonList("&6&lYOU ARE NOW IN COMBAT! &eCombat Tag has been engaged for &630 seconds&e.")),
+    ;
+
+
     private final List<String> defaultMessage;
     private Message message;
 

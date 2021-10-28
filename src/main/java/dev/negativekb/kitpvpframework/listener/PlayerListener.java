@@ -25,6 +25,7 @@
 package dev.negativekb.kitpvpframework.listener;
 
 import dev.negativekb.kitpvpframework.api.AbilityItemManager;
+import dev.negativekb.kitpvpframework.api.CombatManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.ProfileManager;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
@@ -54,11 +55,13 @@ public class PlayerListener implements Listener {
 
     private final ProfileManager profileManager;
     private final AbilityItemManager abilityItemManager;
+    private final CombatManager combatManager;
 
     public PlayerListener() {
         KitPvPAPI api = KitPvPAPI.getInstance();
         profileManager = api.getProfileManager();
         abilityItemManager = api.getAbilityItemManager();
+        combatManager = api.getCombatManager();
     }
 
     @EventHandler
@@ -171,6 +174,8 @@ public class PlayerListener implements Listener {
             return;
 
         Player damager = (Player) event.getDamager();
+        combatTag(damager, (Player) entity);
+
         ItemStack itemInHand = damager.getItemInHand();
         Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
         if (!item.isPresent())
@@ -178,5 +183,12 @@ public class PlayerListener implements Listener {
 
         AbilityItem abilityItem = item.get();
         abilityItem.onPlayerDamage(event);
+    }
+
+    private void combatTag(Player victim, Player damager) {
+        long duration = (30 * 1000L); // 30 seconds
+
+        combatManager.addOrUpdateCombat(damager.getUniqueId(), duration, true);
+        combatManager.addOrUpdateCombat(victim.getUniqueId(), duration, true);
     }
 }

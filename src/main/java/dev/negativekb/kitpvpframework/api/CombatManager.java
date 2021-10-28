@@ -24,35 +24,48 @@
 
 package dev.negativekb.kitpvpframework.api;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 /**
- * KitPvP API Module
+ * Combat Manager Module
  *
  * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
+ * @since October 28th, 2021
+ *
+ * This module will manage all the users in Combat Tag
+ *
+ * You can access this module by using {@link KitPvPAPI#getCombatManager()}
  */
-public abstract class KitPvPAPI implements Disableable {
+public interface CombatManager {
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+    /**
+     * Checks if a UUID is in Combat
+     * @param uuid UUID
+     * @return If the UUID instance is in the combat tag map, return true.
+     */
+    boolean isInCombat(UUID uuid);
 
-    public abstract ProfileManager getProfileManager();
+    /**
+     * Checks if a Player is in Combat
+     * @param player Player
+     * @return If the Player instance is in the combat tag map, return true.
+     */
+    boolean isInCombat(Player player);
 
-    public abstract AbilityItemManager getAbilityItemManager();
+    /**
+     * Adds a UUID to the combat map or updates the UUID in the combat map to the new time
+     * @param uuid UUID
+     * @param duration Duration in {@link java.util.concurrent.TimeUnit#MILLISECONDS}
+     */
+    void addOrUpdateCombat(UUID uuid, long duration, boolean message);
 
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    @Override
-    public abstract void onDisable();
+    /**
+     * Removes a UUID from the combat map
+     * @param uuid UUID
+     * @param message Message the player if they are online
+     */
+    void removeFromCombat(UUID uuid, boolean message);
 
 }

@@ -38,6 +38,8 @@ import java.util.Optional;
  * @since October 27th, 2021
  * <p>
  * This module is the manager for ability items
+ *
+ * You can access this module by using {@link KitPvPAPI#getAbilityItemManager()}
  */
 public interface AbilityItemManager extends Disableable {
 
