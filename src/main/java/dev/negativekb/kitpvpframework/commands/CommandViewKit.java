@@ -28,6 +28,7 @@ import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;
 import dev.negativekb.kitpvpframework.kits.Kit;
 import dev.negativekb.kitpvpframework.kits.Kits;
+import dev.negativekb.kitpvpframework.menus.kits.KitViewerMenu;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -55,8 +56,6 @@ public class CommandViewKit extends Command {
         }
 
         Optional<Kit> theKit = byName.get().getKit();
-        theKit.ifPresent(kit -> {
-            // TODO: Open Kit Viewer Menu
-        });
+        theKit.ifPresent(kit -> new KitViewerMenu(byName.get()).open(player));
     }
 }
