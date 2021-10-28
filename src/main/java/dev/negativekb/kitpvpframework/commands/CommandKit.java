@@ -24,17 +24,34 @@
 
 package dev.negativekb.kitpvpframework.commands;
 
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import dev.negativekb.kitpvpframework.api.ProfileManager;
 import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;
+import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
+import dev.negativekb.kitpvpframework.menus.kits.KitMenu;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Optional;
 
 @CommandInfo(name = "kit", aliases = {"ekit", "ekits", "kits"}, playerOnly = true)
 public class CommandKit extends Command {
 
+    private final ProfileManager profileManager;
+
+    public CommandKit() {
+        KitPvPAPI api = KitPvPAPI.getInstance();
+        profileManager = api.getProfileManager();
+    }
+
     @Override
     public void onCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        // TODO: Open Kit Selection Menu
+        Optional<Profile> stats = profileManager.getProfile(player);
+        if (!stats.isPresent())
+            return; // The player has no stats for some reason?
+
+        new KitMenu(stats.get(), 1).open(player);
     }
 }
