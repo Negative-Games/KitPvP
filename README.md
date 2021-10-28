@@ -67,6 +67,9 @@ Please read on how to use this API [here](https://wiki.deltapvp.club/deltaapi/th
 ### Easy GUI API
 The GUI API allows you to create interactive menus without the need of creating listeners all over the place. The API is provided from [DeltaAPI](https://github.com/Delta-Development/DeltaAPI).
 
+### Spawn System
+This framework contains a custom spawn system which will override any current spawn system such as Essentials. This is so you can control it internally.
+
 Please read on how to use this API [here](https://wiki.deltapvp.club/deltaapi/the-basics/gui)!
 ## Notice
 
