@@ -24,21 +24,58 @@
 
 package dev.negativekb.kitpvpframework.api;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItemType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
 
-public interface AbilityItemManager {
+/**
+ * Ability Item Manager Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module is the manager for ability items
+ */
+public interface AbilityItemManager extends Disableable {
 
+    /**
+     * Register a Ability Item
+     *
+     * @param item AbilityItem instance
+     */
     void registerItem(AbilityItem item);
 
+    /**
+     * Unregister an Ability Item
+     *
+     * @param item AbilityItem instance
+     */
     void unRegisterItem(AbilityItem item);
 
+    /**
+     * Unregister an Ability Item
+     *
+     * @param type AbilityItem type
+     */
     void unRegisterItem(AbilityItemType type);
 
+    /**
+     * Get an AbilityItem instance from {@link AbilityItemType}
+     *
+     * @param type Type of the AbilityItem
+     * @return If the item corresponding to the {@link AbilityItemType} is registered in the cache, return. If not, return empty.
+     */
     Optional<AbilityItem> getItem(AbilityItemType type);
 
+    /**
+     * Get an AbilityItem instance from {@link ItemStack}
+     *
+     * @param itemStack ItemStack instance
+     * @return If the item corresponding to the {@link ItemStack} matches a registered AbilityItem, return. If not, return empty.
+     */
     Optional<AbilityItem> getItem(ItemStack itemStack);
+
 }

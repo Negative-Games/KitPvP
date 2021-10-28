@@ -34,7 +34,8 @@ import org.bukkit.entity.Player;
 
 import java.util.Optional;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.VIEW_KIT_INVALID_KIT;
+import static dev.negativekb.kitpvpframework.core.Locale.VIEW_KIT_SYNTAX_ERROR;
 
 @CommandInfo(name = "viewkit", aliases = {"kitview", "kv", "vk", "kitinfo"}, playerOnly = true)
 public class CommandViewKit extends Command {

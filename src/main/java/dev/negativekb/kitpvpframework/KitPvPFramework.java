@@ -71,10 +71,10 @@ public final class KitPvPFramework extends JavaPlugin {
         KitRegistry kitRegistry = new KitRegistryImpl();
 
         commandRegistry.register(
-            new CommandKit(),
-            new CommandViewKit(),
-            new CommandSpawn(),
-            new CommandSetSpawn()
+                new CommandKit(),
+                new CommandViewKit(),
+                new CommandSpawn(),
+                new CommandSetSpawn()
         );
 
         listenerRegistry.register(

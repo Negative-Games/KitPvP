@@ -22,35 +22,23 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
-
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+package dev.negativekb.kitpvpframework.api.options;
 
 /**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
+ * Disableable Option
  * <p>
- * This module is used to access the main features of the plugin.
+ * This option is used for things that have to have
+ * some sort of code ran when the plugin is disabled.
+ * <p>
+ * Such as saving something, removing entities, or reverting states.
  */
-public abstract class KitPvPAPI implements Disableable {
+public interface Disableable {
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
-
-    public abstract ProfileManager getProfileManager();
-
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    @Override
-    public abstract void onDisable();
-
+    /**
+     * When the plugin gets disabled, it will
+     * run the corresponding code in this method.
+     * <p>
+     * Typically, used for removing entities or reverting states, or something.
+     */
+    void onDisable();
 }
