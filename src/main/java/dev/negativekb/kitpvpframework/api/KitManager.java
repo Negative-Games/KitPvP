@@ -24,24 +24,57 @@
 
 package dev.negativekb.kitpvpframework.api;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.kits.Kit;
 import dev.negativekb.kitpvpframework.kits.Kits;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
-public interface KitManager {
+/**
+ * Kit Manager Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module is used for managing and registering Kits.
+ * <p>
+ * You can access this module using {@link KitPvPAPI#getKitManager()}
+ */
+public interface KitManager extends Disableable {
 
+    /**
+     * Register a Kit instance to the cache
+     *
+     * @param kit Kit instance
+     */
     void register(Kit kit);
 
+    /**
+     * Unregister a Kit instance from the cache
+     *
+     * @param kit Kit instance
+     */
     void unRegister(Kit kit);
 
+    /**
+     * Unregister a Kit instance using {@link Kits} type.
+     *
+     * @param type Kit Type
+     */
     void unRegister(Kits type);
 
+    /**
+     * Gets a Kit from the corresponding {@link Kits} type.
+     *
+     * @param type Kit Type
+     * @return If the corresponding {@link Kits} Kit instance is in the cache, return. If not, return empty.
+     */
     Optional<Kit> getKit(Kits type);
 
+    /**
+     * Returns the Kit instance cache
+     */
     ArrayList<Kit> getKits();
-
-    void onDisable();
 
 }

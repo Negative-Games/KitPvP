@@ -47,9 +47,10 @@ import static dev.negativekb.kitpvpframework.core.Locale.*;
 public class UtilSpawn {
 
     private final JavaPlugin plugin;
+    private final HashMap<UUID, BukkitTask> spawnTasks = new HashMap<>();
     @Getter
     private Location location;
-    private final HashMap<UUID, BukkitTask> spawnTasks = new HashMap<>();
+
     static {
         plugin = KitPvPFramework.getInstance();
         location = loadLocation();

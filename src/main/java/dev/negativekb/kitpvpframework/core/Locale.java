@@ -64,9 +64,7 @@ public enum Locale {
     SPAWN_SUCCESS(Collections.singletonList("&aSuccessfully teleported to spawn!")),
     SPAWN_ALREADY_TRANSPORTING(Collections.singletonList("&cYou are already going through a spawn transportation.")),
     SPAWN_CANCELLED(Collections.singletonList("&cYour spawn transportation has been cancelled due to movement or being attacked.")),
-    SET_SPAWN_SUCCESS(Collections.singletonList("&aYou have successfully set the server's spawn at your location."))
-
-    ;
+    SET_SPAWN_SUCCESS(Collections.singletonList("&aYou have successfully set the server's spawn at your location."));
     private final List<String> defaultMessage;
     private Message message;
 

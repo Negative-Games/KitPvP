@@ -26,6 +26,14 @@ package dev.negativekb.kitpvpframework.api.registry;
 
 import org.bukkit.event.Listener;
 
+/**
+ * Listener Registry Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module is the registry for Listeners
+ */
 public interface ListenerRegistry {
 
     void register(Listener... listeners);

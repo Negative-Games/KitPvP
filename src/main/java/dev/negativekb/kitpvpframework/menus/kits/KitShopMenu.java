@@ -39,7 +39,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.KIT_CANNOT_AFFORD;
+import static dev.negativekb.kitpvpframework.core.Locale.KIT_PURCHASED;
 
 public class KitShopMenu extends GUI {
     public KitShopMenu(Profile profile, int page) {

@@ -34,6 +34,7 @@ import java.util.Optional;
 public class UtilPotionEffect {
 
     private final HashMap<PotionEffectType, String> nameMap;
+
     static {
         nameMap = new HashMap<>();
         nameMap.put(PotionEffectType.ABSORPTION, "Absorption");
