@@ -25,36 +25,37 @@
 package dev.negativekb.kitpvpframework.api;
 
 import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.core.structure.region.Region;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
- * KitPvP API Module
+ * Profile Manager Module
  *
  * @author Negative
- * @since October 27th, 2021
+ * @since October 28th, 2021
  * <p>
- * This module is used to access the main features of the plugin.
+ * This module will manage all regions
+ *
+ * You can access this module by using {@link KitPvPAPI#getRegionManager()}
  */
-public abstract class KitPvPAPI implements Disableable {
+public interface RegionManager extends Disableable {
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+    void createRegion(String name, Location position1, Location position2);
 
-    public abstract ProfileManager getProfileManager();
+    void deleteRegion(Region region);
 
-    public abstract AbilityItemManager getAbilityItemManager();
+    Optional<Region> getRegion(Location location);
 
-    public abstract CosmeticManager getCosmeticManager();
+    Optional<Region> getRegion(String name);
 
-    public abstract KitManager getKitManager();
+    List<Region> getRegions(Location location);
 
-    public abstract CombatManager getCombatManager();
+    List<Region> getRegions(Player player);
 
-    public abstract RegionManager getRegionManager();
-
-    @Override
-    public abstract void onDisable();
+    List<Region> getAllRegions();
 
 }
