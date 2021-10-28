@@ -152,4 +152,12 @@ public class Region {
         Object flagObject = getFlagObject(flag);
         return Boolean.parseBoolean(String.valueOf(flagObject));
     }
+
+    public String getFlagString(RegionFlag flag) {
+        if (!flag.getDataType().equals(RegionFlagDataType.STRING))
+            throw new InvalidFlagDataTypeException("This flag type is not a String.");
+
+        Object flagObject = getFlagObject(flag);
+        return String.valueOf(flagObject);
+    }
 }
