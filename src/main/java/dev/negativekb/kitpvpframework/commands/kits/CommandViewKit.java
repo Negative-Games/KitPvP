@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.commands;
+package dev.negativekb.kitpvpframework.commands.kits;
 
 import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;

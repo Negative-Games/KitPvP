@@ -29,8 +29,10 @@ import dev.negativekb.kitpvpframework.api.registry.CommandRegistry;
 import dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry;
 import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
 import dev.negativekb.kitpvpframework.api.registry.ListenerRegistry;
-import dev.negativekb.kitpvpframework.commands.CommandKit;
-import dev.negativekb.kitpvpframework.commands.CommandViewKit;
+import dev.negativekb.kitpvpframework.commands.kits.CommandKit;
+import dev.negativekb.kitpvpframework.commands.kits.CommandViewKit;
+import dev.negativekb.kitpvpframework.commands.spawn.CommandSetSpawn;
+import dev.negativekb.kitpvpframework.commands.spawn.CommandSpawn;
 import dev.negativekb.kitpvpframework.core.Locale;
 import dev.negativekb.kitpvpframework.core.implementation.APIImpl;
 import dev.negativekb.kitpvpframework.core.implementation.registry.CommandRegisterImpl;
@@ -58,6 +60,9 @@ public final class KitPvPFramework extends JavaPlugin {
         instance = this;
         Locale.init();
 
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
+
         new APIImpl(this);
 
         CommandRegistry commandRegistry = new CommandRegisterImpl();
@@ -67,7 +72,9 @@ public final class KitPvPFramework extends JavaPlugin {
 
         commandRegistry.register(
             new CommandKit(),
-            new CommandViewKit()
+            new CommandViewKit(),
+            new CommandSpawn(),
+            new CommandSetSpawn()
         );
 
         listenerRegistry.register(

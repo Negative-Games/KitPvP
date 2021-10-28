@@ -58,6 +58,14 @@ public enum Locale {
     KIT_CANNOT_AFFORD(Collections.singletonList("&cYou cannot afford this Kit!")),
     KIT_PURCHASED(Collections.singletonList("&aYou have purchased the &e%name% &aKit!")),
 
+    INVALID_PLAYER(Collections.singletonList("&cUnable to find player '&e%name%&c'.")),
+
+    SPAWN_TIMER(Collections.singletonList("&aTeleporting to spawn in &e%time% &asecond(s).")),
+    SPAWN_SUCCESS(Collections.singletonList("&aSuccessfully teleported to spawn!")),
+    SPAWN_ALREADY_TRANSPORTING(Collections.singletonList("&cYou are already going through a spawn transportation.")),
+    SPAWN_CANCELLED(Collections.singletonList("&cYour spawn transportation has been cancelled due to movement or being attacked.")),
+    SET_SPAWN_SUCCESS(Collections.singletonList("&aYou have successfully set the server's spawn at your location."))
+
     ;
     private final List<String> defaultMessage;
     private Message message;
