@@ -1,4 +1,4 @@
-name: KitPvP Framework
+name: KitPvP-Framework
 version: '${project.version}'
 main: dev.negativekb.kitpvpframework.KitPvPFramework
 authors: [ Negative ]
