@@ -22,23 +22,25 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api.registry;
+package dev.negativekb.kitpvpframework.core.implementation.registry;
 
-/**
- * Cosmetic Registry Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module contains the registry for Cosmetics.
- */
-public interface CosmeticRegistry {
+import dev.negativekb.kitpvpframework.api.AbilityItemManager;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import dev.negativekb.kitpvpframework.api.registry.AbilityItemRegistry;
+import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
 
-    /**
-     * Register an array of cosmetics
-     *
-     * @param clazzes Cosmetic instances
-     */
-    void register(Object... clazzes);
+import java.util.Arrays;
 
+public class AbilityItemRegistryImpl implements AbilityItemRegistry {
+
+    private final AbilityItemManager abilityItemManager;
+
+    public AbilityItemRegistryImpl() {
+        abilityItemManager = KitPvPAPI.getInstance().getAbilityItemManager();
+    }
+
+    @Override
+    public void register(AbilityItem... items) {
+        Arrays.stream(items).forEach(abilityItemManager::registerItem);
+    }
 }

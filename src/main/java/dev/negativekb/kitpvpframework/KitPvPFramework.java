@@ -25,20 +25,14 @@
 package dev.negativekb.kitpvpframework;
 
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.registry.CommandRegistry;
-import dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry;
-import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
-import dev.negativekb.kitpvpframework.api.registry.ListenerRegistry;
+import dev.negativekb.kitpvpframework.api.registry.*;
 import dev.negativekb.kitpvpframework.commands.kits.CommandKit;
 import dev.negativekb.kitpvpframework.commands.kits.CommandViewKit;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSetSpawn;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSpawn;
 import dev.negativekb.kitpvpframework.core.Locale;
 import dev.negativekb.kitpvpframework.core.implementation.APIImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.CommandRegisterImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.CosmeticRegistryImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.KitRegistryImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.ListenerRegisterImpl;
+import dev.negativekb.kitpvpframework.core.implementation.registry.*;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.items.BloodExplosionKillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.items.DefaultKillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.items.DefaultKillSound;
@@ -69,6 +63,7 @@ public final class KitPvPFramework extends JavaPlugin {
         ListenerRegistry listenerRegistry = new ListenerRegisterImpl(this);
         CosmeticRegistry cosmeticRegistry = new CosmeticRegistryImpl();
         KitRegistry kitRegistry = new KitRegistryImpl();
+        AbilityItemRegistry abilityItemRegistry = new AbilityItemRegistryImpl();
 
         commandRegistry.register(
                 new CommandKit(),
@@ -96,6 +91,10 @@ public final class KitPvPFramework extends JavaPlugin {
 
         kitRegistry.register(
                 new ExampleKit()
+        );
+
+        abilityItemRegistry.register(
+
         );
     }
 

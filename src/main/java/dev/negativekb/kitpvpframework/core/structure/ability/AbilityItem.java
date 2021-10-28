@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.core.structure.ability;
 
+import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
 import lombok.Getter;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;

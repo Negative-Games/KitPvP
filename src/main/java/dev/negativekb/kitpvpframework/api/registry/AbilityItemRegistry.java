@@ -22,7 +22,20 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.structure.ability;
+package dev.negativekb.kitpvpframework.api.registry;
 
-public enum AbilityItemType {
+import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
+
+/**
+ * Command Registry Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module contains the registry for Commands.
+ */
+public interface AbilityItemRegistry {
+
+    void register(AbilityItem... items);
+
 }

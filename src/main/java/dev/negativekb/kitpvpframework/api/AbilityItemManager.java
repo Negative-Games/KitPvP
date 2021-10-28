@@ -26,7 +26,7 @@ package dev.negativekb.kitpvpframework.api;
 
 import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItemType;
+import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
