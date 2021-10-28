@@ -15,12 +15,12 @@ The internal API is crucial for the plugin to work. It is how most classes acces
 
 You can access the API by doing the following:
 
-```JAVA
-KitPvPAPI api=KitPvPAPI.getInstance();
+```java
+KitPvPAPI api = KitPvPAPI.getInstance();
 
 // Example
 // Get the manager for Profiles
-        ProfileManager profileManager=api.getProfileManager();
+ProfileManager profileManager = api.getProfileManager();
 ```
 
 ### Profiles
@@ -58,7 +58,7 @@ or anything to your heart's desire!
 #### Kill Messages
 
 When you kill a player with a Kill Message enabled, it will send both the victim and killer the corresponding message.
-The message is defined inside of the code.
+The message is defined inside the code.
 
 #### Kill Sounds
 
