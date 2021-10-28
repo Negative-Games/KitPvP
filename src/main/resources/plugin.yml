@@ -1,0 +1,5 @@
+name: KitPvP Framework
+version: '${project.version}'
+main: dev.negativekb.kitpvpframework.KitPvPFramework
+authors: [ Negative ]
+description: The main framework for KitPvP plugins
