@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.core.structure.region;
 
+import dev.negativekb.kitpvpframework.core.structure.region.exceptions.InvalidFlagDataTypeException;
 import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,6 +33,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,6 +41,8 @@ import java.util.Objects;
 public class Region {
 
     private String name;
+    private HashMap<RegionFlag, Object> flags;
+    private int priority;
     private DataPoint position1;
     private DataPoint position2;
 
@@ -104,5 +108,56 @@ public class Region {
         int z2 = Math.max(l1.getBlockZ(), l2.getBlockZ());
 
         return x >= x1 && x <= x2 && y >= y1 && y <= y2 && z >= z1 && z <= z2;
+    }
+
+    public void addFlag(RegionFlag flag, Object value) {
+        if (flags == null)
+            flags = new HashMap<>();
+        boolean contains = flags.containsKey(flag);
+        if (contains)
+            flags.replace(flag, value);
+        else
+            flags.put(flag, value);
+
+        setFlags(flags);
+    }
+
+    public Object getFlagObject(RegionFlag flag) {
+        if (flags == null)
+            return flag.getDefaultValue();
+
+        return flags.getOrDefault(flag, flag.getDefaultValue());
+    }
+
+    public int getFlagInt(RegionFlag flag) {
+        if (!flag.getDataType().equals(RegionFlagDataType.INT))
+            throw new InvalidFlagDataTypeException("This flag type is not an Integer.");
+
+        Object flagObject = getFlagObject(flag);
+        return Integer.parseInt(String.valueOf(flagObject));
+    }
+
+    public double getFlagDouble(RegionFlag flag) {
+        if (!flag.getDataType().equals(RegionFlagDataType.DOUBLE))
+            throw new InvalidFlagDataTypeException("This flag type is not a Double.");
+
+        Object flagObject = getFlagObject(flag);
+        return Double.parseDouble(String.valueOf(flagObject));
+    }
+
+    public boolean getFlagBoolean(RegionFlag flag) {
+        if (!flag.getDataType().equals(RegionFlagDataType.BOOLEAN))
+            throw new InvalidFlagDataTypeException("This flag type is not a Boolean.");
+
+        Object flagObject = getFlagObject(flag);
+        return Boolean.parseBoolean(String.valueOf(flagObject));
+    }
+
+    public String getFlagString(RegionFlag flag) {
+        if (!flag.getDataType().equals(RegionFlagDataType.STRING))
+            throw new InvalidFlagDataTypeException("This flag type is not a String.");
+
+        Object flagObject = getFlagObject(flag);
+        return String.valueOf(flagObject);
     }
 }

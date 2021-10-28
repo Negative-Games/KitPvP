@@ -22,39 +22,28 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.events;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+public abstract class KitPvPEvent extends Event {
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
 
-    public abstract ProfileManager getProfileManager();
+    private static final HandlerList handlers = new HandlerList();
 
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
     @Override
-    public abstract void onDisable();
+    public HandlerList getHandlers() {
+        return handlers;
+    }
 
+    public KitPvPEvent call() {
+        Bukkit.getPluginManager().callEvent(this);
+        return this;
+    }
 }

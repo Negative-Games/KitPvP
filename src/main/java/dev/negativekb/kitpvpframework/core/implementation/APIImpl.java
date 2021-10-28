@@ -37,10 +37,14 @@ public class APIImpl extends KitPvPAPI {
     private final CosmeticManager cosmeticManager;
     private final KitManager kitManager;
     private final CombatManager combatManager;
+    private final RegionManager regionManager;
 
     private final ArrayList<Object> disableableCache = new ArrayList<>();
 
     public APIImpl(JavaPlugin plugin) {
+        regionManager = new RegionManagerImpl(plugin);
+        attemptAddDisableable(regionManager);
+
         profileManager = new ProfileManagerImpl(plugin);
         attemptAddDisableable(profileManager);
 
@@ -80,6 +84,11 @@ public class APIImpl extends KitPvPAPI {
     @Override
     public CombatManager getCombatManager() {
         return combatManager;
+    }
+
+    @Override
+    public RegionManager getRegionManager() {
+        return regionManager;
     }
 
     @Override

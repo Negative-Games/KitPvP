@@ -24,8 +24,11 @@
 
 package dev.negativekb.kitpvpframework.commands.spawn;
 
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import dev.negativekb.kitpvpframework.api.RegionManager;
 import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;
+import dev.negativekb.kitpvpframework.core.structure.region.Region;
 import dev.negativekb.kitpvpframework.core.util.UtilSpawn;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -38,7 +41,10 @@ import static dev.negativekb.kitpvpframework.core.Locale.SPAWN_ALREADY_TRANSPORT
 @CommandInfo(name = "spawn", aliases = {"espawn"})
 public class CommandSpawn extends Command {
 
-    // TODO: Add a check to see if the player is inside of the spawn region, if so, instant tp
+    private final RegionManager regionManager;
+    public CommandSpawn() {
+        regionManager = KitPvPAPI.getInstance().getRegionManager();
+    }
 
     @Override
     public void onCommand(CommandSender sender, String[] args) {
@@ -47,6 +53,16 @@ public class CommandSpawn extends Command {
                 return;
 
             Player player = (Player) sender;
+            Optional<Region> spawn = regionManager.getRegions(player)
+                    .stream()
+                    .filter(region -> region.getName().equalsIgnoreCase("spawn"))
+                    .findFirst();
+
+            if (spawn.isPresent()) {
+                UtilSpawn.teleport(player, true);
+                return;
+            }
+
             if (!UtilSpawn.commenceTeleport(player, 5))
                 SPAWN_ALREADY_TRANSPORTING.send(player);
         }
