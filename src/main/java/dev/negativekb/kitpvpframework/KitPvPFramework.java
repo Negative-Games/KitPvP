@@ -39,6 +39,7 @@ import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.items.De
 import dev.negativekb.kitpvpframework.kits.items.ExampleKit;
 import dev.negativekb.kitpvpframework.listener.GUIListener;
 import dev.negativekb.kitpvpframework.listener.PlayerListener;
+import dev.negativekb.kitpvpframework.listener.PlayerRegionListener;
 import dev.negativekb.kitpvpframework.listener.ProfileInitializerListener;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -75,7 +76,8 @@ public final class KitPvPFramework extends JavaPlugin {
         listenerRegistry.register(
                 new GUIListener(),
                 new PlayerListener(),
-                new ProfileInitializerListener()
+                new ProfileInitializerListener(),
+                new PlayerRegionListener()
         );
 
         cosmeticRegistry.register(

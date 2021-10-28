@@ -27,6 +27,9 @@ package dev.negativekb.kitpvpframework.listener;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.RegionManager;
 import dev.negativekb.kitpvpframework.core.structure.region.Region;
+import dev.negativekb.kitpvpframework.core.structure.region.RegionFlag;
+import dev.negativekb.kitpvpframework.core.util.Message;
+import dev.negativekb.kitpvpframework.core.util.Utils;
 import dev.negativekb.kitpvpframework.events.items.region.RegionEnterEvent;
 import dev.negativekb.kitpvpframework.events.items.region.RegionExitEvent;
 import org.bukkit.Location;
@@ -77,4 +80,40 @@ public class PlayerRegionListener implements Listener {
             e.call();
         }
     }
+
+    @EventHandler
+    public void onEnter(RegionEnterEvent event) {
+        Player player = event.getPlayer();
+        Region region = event.getRegion();
+
+        String enterMessage = region.getFlagString(RegionFlag.ENTER_MESSAGE);
+        if (enterMessage != null) {
+            new Message(enterMessage).replace("%player%", player.getName()).send(player);
+        }
+
+        String enterCommand = region.getFlagString(RegionFlag.ENTER_COMMAND);
+        if (enterCommand != null) {
+            String message = new Message(enterMessage).replace("%player%", player.getName()).getMessage();
+            Utils.executeConsoleCommand(message);
+        }
+    }
+
+    @EventHandler
+    public void onExit(RegionExitEvent event) {
+        Player player = event.getPlayer();
+        Region region = event.getRegion();
+
+        String exitMessage = region.getFlagString(RegionFlag.EXIT_MESSAGE);
+        if (exitMessage != null) {
+            new Message(exitMessage).replace("%player%", player.getName()).send(player);
+        }
+
+        String exitCommand = region.getFlagString(RegionFlag.EXIT_COMMAND);
+        if (exitCommand != null) {
+            String command = new Message(exitCommand).replace("%player%", player.getName()).getMessage();
+            Utils.executeConsoleCommand(command);
+        }
+    }
 }
+
+
