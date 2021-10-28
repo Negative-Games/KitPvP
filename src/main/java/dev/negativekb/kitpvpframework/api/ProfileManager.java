@@ -34,7 +34,7 @@ import java.util.UUID;
 
 public interface ProfileManager {
 
-    void addProfile(UUID uuid);
+    Profile addProfile(UUID uuid);
 
     void removeProfile(Profile profile);
 
