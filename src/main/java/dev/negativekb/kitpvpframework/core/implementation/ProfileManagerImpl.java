@@ -51,12 +51,13 @@ public class ProfileManagerImpl extends ObjectCache<Profile> implements ProfileM
     }
 
     @Override
-    public void addProfile(UUID uuid) {
+    public Profile addProfile(UUID uuid) {
         if (getProfile(uuid).isPresent())
-            return;
+            return getProfile(uuid).get();
 
         Profile profile = new Profile(uuid);
         profiles.add(profile);
+        return profile;
     }
 
     @Override
