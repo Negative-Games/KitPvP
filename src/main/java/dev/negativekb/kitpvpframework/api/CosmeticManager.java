@@ -24,26 +24,64 @@
 
 package dev.negativekb.kitpvpframework.api;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSound;
 
 import java.util.ArrayList;
 
-public interface CosmeticManager {
+/**
+ * Cosmetic Manager Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module is the manager for cosmetics such as {@link KillEffect},
+ * {@link KillMessage} or {@link KillSound}.
+ */
+public interface CosmeticManager extends Disableable {
 
+    /**
+     * Returns the cache arraylist of {@link KillEffect}
+     */
     ArrayList<KillEffect> getKillEffects();
 
+    /**
+     * Returns the cache arraylist of {@link KillMessage}
+     */
     ArrayList<KillMessage> getKillMessages();
 
+    /**
+     * Returns the cache arraylist of {@link KillSound}
+     */
     ArrayList<KillSound> getKillSounds();
 
+    /**
+     * Register a KillEffect instance to the cache
+     *
+     * @param killEffect Kill Effect instance
+     * @apiNote Use {@link dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry} to register Kill Effects
+     */
     void register(KillEffect killEffect);
 
+    /**
+     * Register a KillMessage instance to the cache
+     *
+     * @param killMessage Kill Message instance
+     * @apiNote Use {@link dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry} to register Kill Messages
+     */
     void register(KillMessage killMessage);
 
+    /**
+     * Register a KillSound instance to the cache
+     *
+     * @param killSound Kill Sound instance
+     * @apiNote Use {@link dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry} to register Kill Sounds
+     */
     void register(KillSound killSound);
 
+    @Override
     void onDisable();
 
 }

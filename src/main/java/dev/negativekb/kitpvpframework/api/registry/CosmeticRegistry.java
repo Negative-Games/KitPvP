@@ -24,8 +24,21 @@
 
 package dev.negativekb.kitpvpframework.api.registry;
 
+/**
+ * Cosmetic Register Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module contains the registry for Cosmetics.
+ */
 public interface CosmeticRegistry {
 
+    /**
+     * Register an array of cosmetics
+     *
+     * @param clazzes Cosmetic instances
+     */
     void register(Object... clazzes);
 
 }

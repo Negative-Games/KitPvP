@@ -103,4 +103,6 @@ public abstract class AbilityItem {
         interactEventConsumer.accept(event);
     }
 
+    public abstract void onDisable();
+
 }

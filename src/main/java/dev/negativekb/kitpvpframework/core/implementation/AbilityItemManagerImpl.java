@@ -72,4 +72,9 @@ public class AbilityItemManagerImpl implements AbilityItemManager {
                 .findFirst();
         return entry.map(Entry::getValue);
     }
+
+    @Override
+    public void onDisable() {
+        map.forEach((abilityItemType, abilityItem) -> abilityItem.onDisable());
+    }
 }

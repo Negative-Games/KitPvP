@@ -32,7 +32,8 @@ import org.bukkit.entity.Player;
 
 import java.util.Optional;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.INVALID_PLAYER;
+import static dev.negativekb.kitpvpframework.core.Locale.SPAWN_ALREADY_TRANSPORTING;
 
 @CommandInfo(name = "spawn", aliases = {"espawn"})
 public class CommandSpawn extends Command {

@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.api;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -32,19 +33,58 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ProfileManager {
+/**
+ * Profile Manager Module
+ *
+ * @author Negative
+ * @since October 27th, 2021
+ * <p>
+ * This module will manage and contain all player data / profiles
+ */
+public interface ProfileManager extends Disableable {
 
+    /**
+     * Adds a new user to the Profile cache
+     *
+     * @param uuid UUID of the new Profile
+     * @return Creates a new Profile there is no existing profile. Returns the Profile instance
+     */
     Profile addProfile(UUID uuid);
 
+    /**
+     * Removes a Profile from the cache, which will essentially "delete" it
+     *
+     * @param profile Profile instance
+     */
     void removeProfile(Profile profile);
 
+    /**
+     * Gets the corresponding Profile from the provided {@link UUID}
+     *
+     * @param uuid UUID of the potential Profile
+     * @return If the corresponding {@link UUID} exists inside the Profile cache, return. If not, return empty.
+     */
     Optional<Profile> getProfile(UUID uuid);
 
+    /**
+     * Gets the corresponding Profile from the provided {@link Player}
+     *
+     * @param player Player instance of the potential Profile
+     * @return If the corresponding {@link Player} exists inside the Profile cache, return. If not, return empty.
+     */
     Optional<Profile> getProfile(Player player);
 
+    /**
+     * Gets the corresponding Profile from the provided {@link OfflinePlayer}
+     *
+     * @param player Player instance of the potential Profile
+     * @return If the corresponding {@link OfflinePlayer} exists inside the Profile cache, return. If not, return empty.
+     */
     Optional<Profile> getProfile(OfflinePlayer player);
 
+    /**
+     * Returns the Profile cache
+     */
     ArrayList<Profile> getProfiles();
 
-    void onDisable();
 }

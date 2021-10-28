@@ -25,7 +25,10 @@
 package dev.negativekb.kitpvpframework.core.implementation;
 
 import dev.negativekb.kitpvpframework.api.*;
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
 
 public class APIImpl extends KitPvPAPI {
 
@@ -33,12 +36,17 @@ public class APIImpl extends KitPvPAPI {
     private final AbilityItemManager abilityItemManager;
     private final CosmeticManager cosmeticManager;
     private final KitManager kitManager;
+    private ArrayList<Object> disableableCache = new ArrayList<>();
 
     public APIImpl(JavaPlugin plugin) {
         profileManager = new ProfileManagerImpl(plugin);
+        attemptAddDisableable(profileManager);
         abilityItemManager = new AbilityItemManagerImpl();
+        attemptAddDisableable(abilityItemManager);
         cosmeticManager = new CosmeticManagerImpl();
+        attemptAddDisableable(cosmeticManager);
         kitManager = new KitManagerImpl();
+        attemptAddDisableable(kitManager);
     }
 
     @Override
@@ -63,8 +71,19 @@ public class APIImpl extends KitPvPAPI {
 
     @Override
     public void onDisable() {
-        profileManager.onDisable();
-        cosmeticManager.onDisable();
-        kitManager.onDisable();
+        // In theory should work...
+        disableableCache.forEach(o -> {
+            Disableable disableable = (Disableable) o;
+            disableable.onDisable();
+        });
+//        profileManager.onDisable();
+//        cosmeticManager.onDisable();
+//        kitManager.onDisable();
     }
+
+    private void attemptAddDisableable(Object o) {
+        if (o instanceof Disableable)
+            disableableCache.add(o);
+    }
+
 }
