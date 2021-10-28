@@ -28,6 +28,8 @@ public enum Locale {
     KILLSTREAK_ENDED(Collections.singletonList("&6%player% &ehas been killed on a killstreak of &c&l%amount%&e.")),
     KILLSTREAK_REACHED(Collections.singletonList("&6&l%player% &ehas reached a killstreak of &c&l%amount%&e!")),
 
+    VIEW_KIT_SYNTAX_ERROR(Collections.singletonList("&cInvalid syntax! Do /viewkit <kit>")),
+    VIEW_KIT_INVALID_KIT(Collections.singletonList("&cInvalid kit name `&e%name%&c`!")),
 
     ;
     private final List<String> defaultMessage;
