@@ -43,8 +43,8 @@ public final class KitPvPFramework extends JavaPlugin {
         );
 
         listenerRegistry.register(
-            new GUIListener(),
-            new PlayerListener()
+                new GUIListener(),
+                new PlayerListener()
         );
 
         cosmeticRegistry.register(

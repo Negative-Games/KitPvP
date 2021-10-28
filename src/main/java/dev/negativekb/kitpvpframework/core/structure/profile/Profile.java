@@ -1,6 +1,5 @@
 package dev.negativekb.kitpvpframework.core.structure.profile;
 
-import dev.negativekb.kitpvpframework.core.structure.profile.ProfileCosmeticStatus;
 import dev.negativekb.kitpvpframework.kits.Kits;
 import lombok.Data;
 

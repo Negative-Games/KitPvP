@@ -10,6 +10,7 @@ import java.util.Optional;
 public class KitManagerImpl implements KitManager {
 
     private final ArrayList<Kit> kits = new ArrayList<>();
+
     @Override
     public void register(Kit kit) {
         kits.add(kit);

@@ -10,6 +10,7 @@ public class DefaultKillMessage extends KillMessage {
 
     private final Message killerMessage;
     private final Message victimMessage;
+
     public DefaultKillMessage() {
         super(KillMessageType.DEFAULT);
 

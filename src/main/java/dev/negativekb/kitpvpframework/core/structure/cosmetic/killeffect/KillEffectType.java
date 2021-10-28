@@ -10,8 +10,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Getter
 public enum KillEffectType {
-    BLOOD_EXPLOSION("blood-explosion", "Blood Explosion")
-    ;
+    BLOOD_EXPLOSION("blood-explosion", "Blood Explosion");
     private final String id;
     private final String name;
 

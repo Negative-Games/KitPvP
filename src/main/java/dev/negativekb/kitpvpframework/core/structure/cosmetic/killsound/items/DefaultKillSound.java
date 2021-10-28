@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 public class DefaultKillSound extends KillSound {
 
     private final Sound sound;
+
     public DefaultKillSound() {
         super(KillSoundType.DEFAULT);
 

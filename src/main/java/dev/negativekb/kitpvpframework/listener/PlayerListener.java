@@ -1,13 +1,12 @@
 package dev.negativekb.kitpvpframework.listener;
 
 import dev.negativekb.kitpvpframework.api.AbilityItemManager;
-import dev.negativekb.kitpvpframework.api.CosmeticManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.ProfileManager;
-import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffectType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessageType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoundType;
+import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
 import dev.negativekb.kitpvpframework.core.structure.profile.ProfileCosmeticStatus;
 import dev.negativekb.kitpvpframework.core.util.Utils;
 import org.bukkit.entity.Player;
@@ -17,7 +16,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.Optional;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.KILLSTREAK_ENDED;
+import static dev.negativekb.kitpvpframework.core.Locale.KILLSTREAK_REACHED;
 
 public class PlayerListener implements Listener {
 
