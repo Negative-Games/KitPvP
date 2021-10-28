@@ -55,6 +55,18 @@ When you kill a player with a Kill Message enabled, it will send both the victim
 #### Kill Sounds
 When you kill a player it will send the killer the corresponding sound. The sound is defined inside of the code.
 
+### Ability Items
+Ability Items are custom items which when its corresponding condition is met, such as Left-Clicking, Right-Clicking, or damaging a player, it will execute its corresponding code.
+
+### Easy Command API
+The Command API allows you to create commands easier than using regular CommandExecutor. The API is provided from [DeltaAPI](https://github.com/Delta-Development/DeltaAPI).
+
+Please read on how to use this API [here](https://wiki.deltapvp.club/deltaapi/the-basics/commands)!
+
+### Easy GUI API
+The GUI API allows you to create interactive menus without the need of creating listeners all over the place. The API is provided from [DeltaAPI](https://github.com/Delta-Development/DeltaAPI).
+
+Please read on how to use this API [here](https://wiki.deltapvp.club/deltaapi/the-basics/gui)!
 ## Notice
 
 This Mark Down will be expanded upon at a later date. This currently does not cover all the features of the framework.
