@@ -27,16 +27,23 @@ package dev.negativekb.kitpvpframework.listener;
 import dev.negativekb.kitpvpframework.api.AbilityItemManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.ProfileManager;
+import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffectType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessageType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoundType;
 import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
 import dev.negativekb.kitpvpframework.core.structure.profile.ProfileCosmeticStatus;
 import dev.negativekb.kitpvpframework.core.util.Utils;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
 
@@ -115,5 +122,61 @@ public class PlayerListener implements Listener {
         if (!killerCosmetics.getKillSound().isPresent()) {
             KillSoundType.DEFAULT.getKillSound().ifPresent(killSound -> killSound.send(player, killer));
         }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+
+        ItemStack itemInHand = player.getItemInHand();
+        Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
+        if (!item.isPresent())
+            return;
+
+        AbilityItem abilityItem = item.get();
+
+        if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
+            abilityItem.onLeftClick(event);
+            return;
+        }
+
+        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            abilityItem.onRightClick(event);
+            return;
+        }
+
+        abilityItem.onInteract(event);
+    }
+
+    @EventHandler
+    public void onInteractAtEntity(PlayerInteractAtEntityEvent event) {
+        Player player = event.getPlayer();
+        ItemStack itemInHand = player.getItemInHand();
+        Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
+        if (!item.isPresent())
+            return;
+
+        AbilityItem abilityItem = item.get();
+        abilityItem.onRightClickEntity(event);
+    }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageByEntityEvent event) {
+        Entity entity = event.getEntity();
+        if (!(entity instanceof Player))
+            return;
+
+        if (!(event.getDamager() instanceof Player))
+            return;
+
+        Player damager = (Player) event.getDamager();
+        ItemStack itemInHand = damager.getItemInHand();
+        Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
+        if (!item.isPresent())
+            return;
+
+        AbilityItem abilityItem = item.get();
+        abilityItem.onPlayerDamage(event);
     }
 }
