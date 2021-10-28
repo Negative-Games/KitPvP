@@ -27,7 +27,7 @@ package dev.negativekb.kitpvpframework.api.registry;
 import dev.negativekb.kitpvpframework.core.command.Command;
 
 /**
- * Command Register Module
+ * Command Registry Module
  *
  * @author Negative
  * @since October 27th, 2021

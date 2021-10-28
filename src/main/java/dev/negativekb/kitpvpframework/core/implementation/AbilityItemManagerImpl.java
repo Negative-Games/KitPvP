@@ -26,7 +26,7 @@ package dev.negativekb.kitpvpframework.core.implementation;
 
 import dev.negativekb.kitpvpframework.api.AbilityItemManager;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItemType;
+import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 

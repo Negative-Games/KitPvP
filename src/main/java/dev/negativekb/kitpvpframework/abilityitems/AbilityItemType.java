@@ -22,23 +22,16 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api.registry;
+package dev.negativekb.kitpvpframework.abilityitems;
 
-/**
- * Cosmetic Registry Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module contains the registry for Cosmetics.
- */
-public interface CosmeticRegistry {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-    /**
-     * Register an array of cosmetics
-     *
-     * @param clazzes Cosmetic instances
-     */
-    void register(Object... clazzes);
-
+@RequiredArgsConstructor
+@Getter
+public enum AbilityItemType {
+    EXAMPLE("example", "Example Item"),
+    ;
+    private final String id;
+    private final String name;
 }

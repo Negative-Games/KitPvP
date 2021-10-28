@@ -22,23 +22,32 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api.registry;
+package dev.negativekb.kitpvpframework.abilityitems.items;
 
-/**
- * Cosmetic Registry Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module contains the registry for Cosmetics.
- */
-public interface CosmeticRegistry {
+import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
+import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
+import dev.negativekb.kitpvpframework.core.util.builder.ItemBuilder;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-    /**
-     * Register an array of cosmetics
-     *
-     * @param clazzes Cosmetic instances
-     */
-    void register(Object... clazzes);
+public class ExampleItem extends AbilityItem {
+    protected ExampleItem() {
+        super(AbilityItemType.EXAMPLE);
 
+        setRightClickEvent(event -> {
+            Player player = event.getPlayer();
+            player.sendMessage("You have right-clicked the ability item!");
+        });
+    }
+
+    @Override
+    public ItemStack getItem() {
+        return new ItemBuilder(Material.INK_SACK).setDurability((short) 14).setName("&cExample Item").build();
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
 }
