@@ -1,7 +1,8 @@
 ﻿# KitPvP-Framework
-
 This repository contains a framework built for KitPvP plugins. The main purpose of this project is if I wanted to create
 a new KitPvP project of some sorts, I can use this framework as a starting base for the plugin I plan to make.
+
+[![CodeFactor](https://www.codefactor.io/repository/github/negativekb/kitpvp-framework/badge)](https://www.codefactor.io/repository/github/negativekb/kitpvp-framework) 
 
 ## Feature List
 
