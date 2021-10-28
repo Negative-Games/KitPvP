@@ -42,6 +42,7 @@ public class Region {
 
     private String name;
     private HashMap<RegionFlag, Object> flags;
+    private int priority;
     private DataPoint position1;
     private DataPoint position2;
 
