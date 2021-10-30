@@ -77,7 +77,7 @@ public final class KitPvPFramework extends JavaPlugin {
                 new GUIListener(),
                 new PlayerListener(),
                 new ProfileInitializerListener(),
-                new PlayerRegionListener()
+                new PlayerRegionListener(this)
         );
 
         cosmeticRegistry.register(
