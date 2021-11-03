@@ -28,6 +28,7 @@ import dev.negativekb.kitpvpframework.api.CosmeticManager;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSound;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrail;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class CosmeticManagerImpl implements CosmeticManager {
     private final ArrayList<KillEffect> killEffects = new ArrayList<>();
     private final ArrayList<KillMessage> killMessages = new ArrayList<>();
     private final ArrayList<KillSound> killSounds = new ArrayList<>();
+    private final ArrayList<ProjectileTrail> projectileTrails = new ArrayList<>();
 
     @Override
     public ArrayList<KillEffect> getKillEffects() {
@@ -53,6 +55,11 @@ public class CosmeticManagerImpl implements CosmeticManager {
     }
 
     @Override
+    public ArrayList<ProjectileTrail> getProjectileTrails() {
+        return projectileTrails;
+    }
+
+    @Override
     public void register(KillEffect killEffect) {
         killEffects.add(killEffect);
     }
@@ -65,6 +72,11 @@ public class CosmeticManagerImpl implements CosmeticManager {
     @Override
     public void register(KillSound killSound) {
         killSounds.add(killSound);
+    }
+
+    @Override
+    public void register(ProjectileTrail projectileTrail) {
+        projectileTrails.add(projectileTrail);
     }
 
     @Override

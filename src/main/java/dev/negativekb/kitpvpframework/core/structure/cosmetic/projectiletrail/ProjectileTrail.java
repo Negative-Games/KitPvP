@@ -22,19 +22,35 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.structure.cosmetic;
+package dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail;
 
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.Cosmetic;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.CosmeticType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
 
 @RequiredArgsConstructor
-@Getter
-public enum CosmeticType {
-    KILL_EFFECT("kill-effect", "Kill Effect"),
-    KILL_MESSAGE("kill-message", "Kill Message"),
-    KILL_SOUND("kill-effect", "Kill Sound"),
-    PROJECTILE_TRAIL("projectile-trail", "Projectile Trail")
-    ;
-    private final String id;
-    private final String name;
+public abstract class ProjectileTrail implements Cosmetic {
+
+    @Getter
+    private final ProjectileTrailType type;
+
+    public abstract void play(Player player, ProjectileLaunchEvent event);
+
+    @Override
+    public String getID() {
+        return type.getId();
+    }
+
+    @Override
+    public CosmeticType getCosmeticType() {
+        return CosmeticType.KILL_SOUND;
+    }
+
+    @Override
+    public abstract ItemStack getIcon();
+
 }

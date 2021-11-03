@@ -22,40 +22,31 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.structure.profile;
+package dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail;
 
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffectType;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessageType;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoundType;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrailType;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
 import java.util.Optional;
 
-public class ProfileCosmeticStatus {
+@RequiredArgsConstructor
+@Getter
+public enum ProjectileTrailType {
+    HEARTS("hearts", "Hearts"),
+    ;
+    private final String id;
+    private final String name;
 
-    @Setter
-    private KillEffectType killEffect;
-    @Setter
-    private KillMessageType killMessage;
-    @Setter
-    private KillSoundType killSound;
-    @Setter
-    private ProjectileTrailType projectileTrail;
-
-    public Optional<KillEffectType> getKillEffect() {
-        return Optional.ofNullable(killEffect);
+    public static Optional<ProjectileTrailType> getByName(String input) {
+        return Arrays.stream(values()).filter(projectileTrailType -> projectileTrailType.getName().equalsIgnoreCase(input)
+                || projectileTrailType.getId().equalsIgnoreCase(input)).findFirst();
     }
 
-    public Optional<KillMessageType> getKillMessage() {
-        return Optional.ofNullable(killMessage);
-    }
-
-    public Optional<KillSoundType> getKillSound() {
-        return Optional.ofNullable(killSound);
-    }
-
-    public Optional<ProjectileTrailType> getProjectileType() {
-        return Optional.ofNullable(projectileTrail);
+    public Optional<ProjectileTrail> getProjectileTrail() {
+        return KitPvPAPI.getInstance().getCosmeticManager().getProjectileTrails()
+                .stream().filter(projectileTrail -> projectileTrail.getType().equals(this))
+                .findFirst();
     }
 }
