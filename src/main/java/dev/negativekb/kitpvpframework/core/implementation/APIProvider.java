@@ -26,27 +26,49 @@ package dev.negativekb.kitpvpframework.core.implementation;
 
 import dev.negativekb.kitpvpframework.api.*;
 import dev.negativekb.kitpvpframework.api.options.Disableable;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
+import dev.negativekb.kitpvpframework.core.implementation.placeholder.PAPIManagerProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
-public class APIImpl extends KitPvPAPI {
+public class APIProvider extends KitPvPAPI {
 
     private final ProfileManager profileManager;
     private final AbilityItemManager abilityItemManager;
     private final CosmeticManager cosmeticManager;
     private final KitManager kitManager;
-    private ArrayList<Object> disableableCache = new ArrayList<>();
+    private final CombatManager combatManager;
+    private final RegionManager regionManager;
+    private final WarpManager warpManager;
+    private final PAPIManager papiManager;
 
-    public APIImpl(JavaPlugin plugin) {
-        profileManager = new ProfileManagerImpl(plugin);
+    private final ArrayList<Object> disableableCache = new ArrayList<>();
+
+    public APIProvider(JavaPlugin plugin) {
+        regionManager = new RegionManagerProvider(plugin);
+        attemptAddDisableable(regionManager);
+
+        profileManager = new ProfileManagerProvider(plugin);
         attemptAddDisableable(profileManager);
-        abilityItemManager = new AbilityItemManagerImpl();
+
+        abilityItemManager = new AbilityItemManagerProvider();
         attemptAddDisableable(abilityItemManager);
-        cosmeticManager = new CosmeticManagerImpl();
+
+        cosmeticManager = new CosmeticManagerProvider();
         attemptAddDisableable(cosmeticManager);
-        kitManager = new KitManagerImpl();
+
+        kitManager = new KitManagerProvider();
         attemptAddDisableable(kitManager);
+
+        combatManager = new CombatManagerProvider(plugin);
+        attemptAddDisableable(combatManager);
+
+        warpManager = new WarpManagerProvider(plugin);
+        attemptAddDisableable(warpManager);
+
+        papiManager = new PAPIManagerProvider();
+        attemptAddDisableable(papiManager);
     }
 
     @Override
@@ -67,6 +89,26 @@ public class APIImpl extends KitPvPAPI {
     @Override
     public KitManager getKitManager() {
         return kitManager;
+    }
+
+    @Override
+    public CombatManager getCombatManager() {
+        return combatManager;
+    }
+
+    @Override
+    public RegionManager getRegionManager() {
+        return regionManager;
+    }
+
+    @Override
+    public WarpManager getWarpManager() {
+        return warpManager;
+    }
+
+    @Override
+    public PAPIManager getPAPIManager() {
+        return papiManager;
     }
 
     @Override

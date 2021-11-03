@@ -25,27 +25,28 @@
 package dev.negativekb.kitpvpframework;
 
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.registry.CommandRegistry;
-import dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry;
-import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
-import dev.negativekb.kitpvpframework.api.registry.ListenerRegistry;
+import dev.negativekb.kitpvpframework.api.registry.*;
 import dev.negativekb.kitpvpframework.commands.kits.CommandKit;
 import dev.negativekb.kitpvpframework.commands.kits.CommandViewKit;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSetSpawn;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSpawn;
+import dev.negativekb.kitpvpframework.commands.warps.CommandDeleteWarp;
+import dev.negativekb.kitpvpframework.commands.warps.CommandSetWarp;
+import dev.negativekb.kitpvpframework.commands.warps.CommandWarp;
 import dev.negativekb.kitpvpframework.core.Locale;
-import dev.negativekb.kitpvpframework.core.implementation.APIImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.CommandRegisterImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.CosmeticRegistryImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.KitRegistryImpl;
-import dev.negativekb.kitpvpframework.core.implementation.registry.ListenerRegisterImpl;
+import dev.negativekb.kitpvpframework.core.implementation.APIProvider;
+import dev.negativekb.kitpvpframework.core.implementation.placeholder.PAPIExpansionProvider;
+import dev.negativekb.kitpvpframework.core.implementation.registry.*;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.items.BloodExplosionKillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.items.DefaultKillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.items.DefaultKillSound;
 import dev.negativekb.kitpvpframework.kits.items.ExampleKit;
 import dev.negativekb.kitpvpframework.listener.GUIListener;
 import dev.negativekb.kitpvpframework.listener.PlayerListener;
+import dev.negativekb.kitpvpframework.listener.PlayerRegionListener;
 import dev.negativekb.kitpvpframework.listener.ProfileInitializerListener;
+import dev.negativekb.kitpvpframework.placeholders.DeathsPlaceholder;
+import dev.negativekb.kitpvpframework.placeholders.KillsPlaceholder;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -63,24 +64,30 @@ public final class KitPvPFramework extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
-        new APIImpl(this);
+        new APIProvider(this);
 
-        CommandRegistry commandRegistry = new CommandRegisterImpl();
-        ListenerRegistry listenerRegistry = new ListenerRegisterImpl(this);
-        CosmeticRegistry cosmeticRegistry = new CosmeticRegistryImpl();
-        KitRegistry kitRegistry = new KitRegistryImpl();
+        CommandRegistry commandRegistry = new CommandRegisterProvider();
+        ListenerRegistry listenerRegistry = new ListenerRegisterProvider(this);
+        CosmeticRegistry cosmeticRegistry = new CosmeticRegistryProvider();
+        KitRegistry kitRegistry = new KitRegistryProvider();
+        AbilityItemRegistry abilityItemRegistry = new AbilityItemRegistryProvider();
+        PlaceholderRegistry placeholderRegistry = new PlaceholderRegistryProvider();
 
         commandRegistry.register(
                 new CommandKit(),
                 new CommandViewKit(),
                 new CommandSpawn(),
-                new CommandSetSpawn()
+                new CommandSetSpawn(),
+                new CommandDeleteWarp(),
+                new CommandSetWarp(),
+                new CommandWarp()
         );
 
         listenerRegistry.register(
                 new GUIListener(),
-                new PlayerListener(),
-                new ProfileInitializerListener()
+                new PlayerListener(this),
+                new ProfileInitializerListener(),
+                new PlayerRegionListener()
         );
 
         cosmeticRegistry.register(
@@ -97,6 +104,17 @@ public final class KitPvPFramework extends JavaPlugin {
         kitRegistry.register(
                 new ExampleKit()
         );
+
+        abilityItemRegistry.register(
+
+        );
+
+        placeholderRegistry.register(
+                new KillsPlaceholder(),
+                new DeathsPlaceholder()
+        );
+        // Placeholder API Implementation
+        new PAPIExpansionProvider();
     }
 
     @Override

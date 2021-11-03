@@ -27,6 +27,7 @@ package dev.negativekb.kitpvpframework.core.structure.profile;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffectType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessageType;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoundType;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrailType;
 import lombok.Setter;
 
 import java.util.Optional;
@@ -39,6 +40,8 @@ public class ProfileCosmeticStatus {
     private KillMessageType killMessage;
     @Setter
     private KillSoundType killSound;
+    @Setter
+    private ProjectileTrailType projectileTrail;
 
     public Optional<KillEffectType> getKillEffect() {
         return Optional.ofNullable(killEffect);
@@ -50,5 +53,9 @@ public class ProfileCosmeticStatus {
 
     public Optional<KillSoundType> getKillSound() {
         return Optional.ofNullable(killSound);
+    }
+
+    public Optional<ProjectileTrailType> getProjectileType() {
+        return Optional.ofNullable(projectileTrail);
     }
 }

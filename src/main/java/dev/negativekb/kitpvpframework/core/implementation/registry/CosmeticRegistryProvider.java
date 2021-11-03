@@ -22,53 +22,35 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.implementation;
+package dev.negativekb.kitpvpframework.core.implementation.registry;
 
 import dev.negativekb.kitpvpframework.api.CosmeticManager;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSound;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
-public class CosmeticManagerImpl implements CosmeticManager {
-
-    private final ArrayList<KillEffect> killEffects = new ArrayList<>();
-    private final ArrayList<KillMessage> killMessages = new ArrayList<>();
-    private final ArrayList<KillSound> killSounds = new ArrayList<>();
-
+public class CosmeticRegistryProvider implements CosmeticRegistry {
     @Override
-    public ArrayList<KillEffect> getKillEffects() {
-        return killEffects;
-    }
+    public void register(Object... clazzes) {
+        CosmeticManager manager = KitPvPAPI.getInstance().getCosmeticManager();
 
-    @Override
-    public ArrayList<KillMessage> getKillMessages() {
-        return killMessages;
-    }
+        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillEffect).forEach(o -> {
+            KillEffect effect = (KillEffect) o;
+            manager.register(effect);
+        });
 
-    @Override
-    public ArrayList<KillSound> getKillSounds() {
-        return killSounds;
-    }
+        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillMessage).forEach(o -> {
+            KillMessage effect = (KillMessage) o;
+            manager.register(effect);
+        });
 
-    @Override
-    public void register(KillEffect killEffect) {
-        killEffects.add(killEffect);
-    }
-
-    @Override
-    public void register(KillMessage killMessage) {
-        killMessages.add(killMessage);
-    }
-
-    @Override
-    public void register(KillSound killSound) {
-        killSounds.add(killSound);
-    }
-
-    @Override
-    public void onDisable() {
-        killEffects.forEach(KillEffect::onDisable);
+        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillSound).forEach(o -> {
+            KillSound effect = (KillSound) o;
+            manager.register(effect);
+        });
     }
 }

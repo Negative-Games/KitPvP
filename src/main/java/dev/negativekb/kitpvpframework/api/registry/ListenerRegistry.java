@@ -34,7 +34,6 @@ import org.bukkit.event.Listener;
  * <p>
  * This module is the registry for Listeners
  */
-public interface ListenerRegistry {
+public interface ListenerRegistry extends Registry<Listener> {
 
-    void register(Listener... listeners);
 }

@@ -34,6 +34,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 
 public class GUIListener implements Listener {
@@ -54,8 +55,9 @@ public class GUIListener implements Listener {
 
         HashMap<Integer, BiConsumer<Player, InventoryClickEvent>> clickEvents = base.getGui().getClickEvents();
         int slot = event.getSlot();
-        if (clickEvents.containsKey(slot))
-            clickEvents.get(slot).accept((Player) event.getWhoClicked(), event);
+
+        Optional.ofNullable(clickEvents.get(slot))
+                .ifPresent(function -> function.accept((Player) event.getWhoClicked(), event));
 
     }
 

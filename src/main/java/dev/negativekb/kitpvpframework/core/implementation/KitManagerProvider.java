@@ -24,57 +24,44 @@
 
 package dev.negativekb.kitpvpframework.core.implementation;
 
-import dev.negativekb.kitpvpframework.api.AbilityItemManager;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItemType;
-import lombok.Getter;
-import org.bukkit.inventory.ItemStack;
+import dev.negativekb.kitpvpframework.api.KitManager;
+import dev.negativekb.kitpvpframework.kits.Kit;
+import dev.negativekb.kitpvpframework.kits.Kits;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Optional;
 
-import static java.util.Map.Entry;
+public class KitManagerProvider implements KitManager {
 
-public class AbilityItemManagerImpl implements AbilityItemManager {
-
-    @Getter
-    private final HashMap<AbilityItemType, AbilityItem> map = new HashMap<>();
+    private final ArrayList<Kit> kits = new ArrayList<>();
 
     @Override
-    public void registerItem(AbilityItem item) {
-        map.put(item.getType(), item);
+    public void register(Kit kit) {
+        kits.add(kit);
     }
 
     @Override
-    public void unRegisterItem(AbilityItem item) {
-        unRegisterItem(item.getType());
+    public void unRegister(Kit kit) {
+        kits.remove(kit);
     }
 
     @Override
-    public void unRegisterItem(AbilityItemType type) {
-        map.remove(type);
+    public void unRegister(Kits type) {
+        type.getKit().ifPresent(kits::remove);
     }
 
     @Override
-    public Optional<AbilityItem> getItem(AbilityItemType type) {
-        return Optional.ofNullable(map.get(type));
+    public Optional<Kit> getKit(Kits type) {
+        return kits.stream().filter(kit -> kit.getType().equals(type)).findFirst();
     }
 
     @Override
-    public Optional<AbilityItem> getItem(ItemStack itemStack) {
-        if (itemStack == null)
-            return Optional.empty();
-
-        Optional<Map.Entry<AbilityItemType, AbilityItem>> entry = map.entrySet()
-                .stream()
-                .filter(e -> e.getValue().getItem().isSimilar(itemStack))
-                .findFirst();
-        return entry.map(Entry::getValue);
+    public ArrayList<Kit> getKits() {
+        return kits;
     }
 
     @Override
     public void onDisable() {
-        map.forEach((abilityItemType, abilityItem) -> abilityItem.onDisable());
+        getKits().forEach(Kit::onDisable);
     }
 }

@@ -26,7 +26,7 @@ package dev.negativekb.kitpvpframework.api;
 
 import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItemType;
+import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
@@ -38,6 +38,8 @@ import java.util.Optional;
  * @since October 27th, 2021
  * <p>
  * This module is the manager for ability items
+ *
+ * You can access this module by using {@link KitPvPAPI#getAbilityItemManager()}
  */
 public interface AbilityItemManager extends Disableable {
 

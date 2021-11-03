@@ -22,46 +22,36 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.implementation;
+package dev.negativekb.kitpvpframework.core.structure.warp;
 
-import dev.negativekb.kitpvpframework.api.KitManager;
-import dev.negativekb.kitpvpframework.kits.Kit;
-import dev.negativekb.kitpvpframework.kits.Kits;
+import lombok.Data;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
-public class KitManagerImpl implements KitManager {
+@Data
+public class Warp {
 
-    private final ArrayList<Kit> kits = new ArrayList<>();
+    private String name;
+    private String permission;
+    private WarpLocation location;
 
-    @Override
-    public void register(Kit kit) {
-        kits.add(kit);
+    public boolean hasPermission() {
+        return getPermission().isPresent();
     }
 
-    @Override
-    public void unRegister(Kit kit) {
-        kits.remove(kit);
+    public Optional<String> getPermission() {
+        return Optional.ofNullable(permission);
     }
 
-    @Override
-    public void unRegister(Kits type) {
-        type.getKit().ifPresent(kits::remove);
+    public void teleport(Player player) {
+        teleport(player, null);
     }
 
-    @Override
-    public Optional<Kit> getKit(Kits type) {
-        return kits.stream().filter(kit -> kit.getType().equals(type)).findFirst();
+    public void teleport(Player player, Runnable afterTeleport) {
+        player.teleport(location.toLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
+        Optional.ofNullable(afterTeleport).ifPresent(Runnable::run);
     }
 
-    @Override
-    public ArrayList<Kit> getKits() {
-        return kits;
-    }
-
-    @Override
-    public void onDisable() {
-        getKits().forEach(Kit::onDisable);
-    }
 }

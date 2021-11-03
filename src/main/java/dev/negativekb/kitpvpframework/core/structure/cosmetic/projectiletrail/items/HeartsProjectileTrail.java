@@ -22,7 +22,26 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.structure.ability;
+package dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.items;
 
-public enum AbilityItemType {
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrail;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrailType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
+
+public class HeartsProjectileTrail extends ProjectileTrail {
+    public HeartsProjectileTrail() {
+        super(ProjectileTrailType.HEARTS);
+    }
+
+    @Override
+    public void play(Player player, ProjectileLaunchEvent event) {
+
+    }
+
+    @Override
+    public ItemStack getIcon() {
+        return null;
+    }
 }

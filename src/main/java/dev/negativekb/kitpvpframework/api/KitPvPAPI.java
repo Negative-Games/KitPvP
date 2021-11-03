@@ -25,6 +25,7 @@
 package dev.negativekb.kitpvpframework.api;
 
 import dev.negativekb.kitpvpframework.api.options.Disableable;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,6 +50,14 @@ public abstract class KitPvPAPI implements Disableable {
     public abstract CosmeticManager getCosmeticManager();
 
     public abstract KitManager getKitManager();
+
+    public abstract CombatManager getCombatManager();
+
+    public abstract RegionManager getRegionManager();
+
+    public abstract WarpManager getWarpManager();
+
+    public abstract PAPIManager getPAPIManager();
 
     @Override
     public abstract void onDisable();

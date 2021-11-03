@@ -27,20 +27,13 @@ package dev.negativekb.kitpvpframework.api.registry;
 import dev.negativekb.kitpvpframework.core.command.Command;
 
 /**
- * Command Register Module
+ * Command Registry Module
  *
  * @author Negative
  * @since October 27th, 2021
  * <p>
  * This module contains the registry for Commands.
  */
-public interface CommandRegistry {
-
-    /**
-     * Register an array of Commands
-     *
-     * @param commands Command array
-     */
-    void register(Command... commands);
+public interface CommandRegistry extends Registry<Command> {
 
 }

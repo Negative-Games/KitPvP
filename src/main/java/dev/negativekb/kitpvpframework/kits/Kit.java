@@ -41,6 +41,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public abstract class Kit {
@@ -106,23 +107,17 @@ public abstract class Kit {
 
         PlayerInventory inv = player.getInventory();
 
-        if (getHelmet() != null && getHelmet().getType() != Material.AIR)
-            inv.setHelmet(getHelmet());
+        Optional.ofNullable(getHelmet()).ifPresent(inv::setHelmet);
 
-        if (getChestplate() != null && getChestplate().getType() != Material.AIR)
-            inv.setChestplate(getChestplate());
+        Optional.ofNullable(getChestplate()).ifPresent(inv::setChestplate);
 
-        if (getLeggings() != null && getLeggings().getType() != Material.AIR)
-            inv.setLeggings(getLeggings());
+        Optional.ofNullable(getLeggings()).ifPresent(inv::setLeggings);
 
-        if (getBoots() != null && getBoots().getType() != Material.AIR)
-            inv.setBoots(getBoots());
+        Optional.ofNullable(getBoots()).ifPresent(inv::setBoots);
 
-        if (!kitContents().isEmpty() || kitContents() != null)
-            kitContents().forEach(inv::setItem);
+        Optional.ofNullable(kitContents()).ifPresent(contents -> contents.forEach(inv::setItem));
 
-        if (getPermanentPotionEffects() != null)
-            getPermanentPotionEffects().forEach(player::addPotionEffect);
+        Optional.ofNullable(getPermanentPotionEffects()).ifPresent(potionEffects -> potionEffects.forEach(player::addPotionEffect));
 
         player.playSound(player.getLocation(), Sound.LEVEL_UP, 2, 1);
     }
@@ -133,10 +128,7 @@ public abstract class Kit {
     }
 
     public void onRightClickEntity(PlayerInteractAtEntityEvent event) {
-        if (rightClickEntityEventConsumer == null)
-            return;
-
-        rightClickEntityEventConsumer.accept(event);
+        Optional.ofNullable(rightClickEntityEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void setLeftClickEvent(Consumer<PlayerInteractEvent> function) {
@@ -144,10 +136,7 @@ public abstract class Kit {
     }
 
     public void onLeftClickEvent(PlayerInteractEvent event) {
-        if (leftClickEventConsumer == null)
-            return;
-
-        leftClickEventConsumer.accept(event);
+        Optional.ofNullable(leftClickEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void setDamagePlayerEvent(Consumer<EntityDamageByEntityEvent> function) {
@@ -155,10 +144,7 @@ public abstract class Kit {
     }
 
     public void onRightClickEvent(PlayerInteractEvent event) {
-        if (rightClickEventConsumer == null)
-            return;
-
-        rightClickEventConsumer.accept(event);
+        Optional.ofNullable(rightClickEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void setInteractEvent(Consumer<PlayerInteractEvent> function) {
@@ -166,10 +152,7 @@ public abstract class Kit {
     }
 
     public void onInteractEvent(PlayerInteractEvent event) {
-        if (interactEventConsumer == null)
-            return;
-
-        interactEventConsumer.accept(event);
+        Optional.ofNullable(interactEventConsumer).ifPresent(function -> function.accept(event));
     }
 
 
@@ -178,10 +161,7 @@ public abstract class Kit {
     }
 
     public void onDeathEvent(PlayerDeathEvent event) {
-        if (deathEventConsumer == null)
-            return;
-
-        deathEventConsumer.accept(event);
+        Optional.ofNullable(deathEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void setMoveEvent(Consumer<PlayerMoveEvent> function) {
@@ -189,10 +169,7 @@ public abstract class Kit {
     }
 
     public void onMoveEvent(PlayerMoveEvent event) {
-        if (moveEventConsumer == null)
-            return;
-
-        moveEventConsumer.accept(event);
+        Optional.ofNullable(moveEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void setRightClickEvent(Consumer<PlayerInteractEvent> function) {
@@ -200,10 +177,7 @@ public abstract class Kit {
     }
 
     public void onDamagePlayer(EntityDamageByEntityEvent event) {
-        if (damagePlayerEventConsumer == null)
-            return;
-
-        damagePlayerEventConsumer.accept(event);
+        Optional.ofNullable(damagePlayerEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public abstract void onDisable();

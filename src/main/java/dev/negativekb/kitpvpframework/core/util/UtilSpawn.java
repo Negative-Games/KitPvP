@@ -133,7 +133,7 @@ public class UtilSpawn {
                 SPAWN_TIMER.replace("%time%", theDelay[0]).send(player);
                 theDelay[0]--;
             }
-        }.runTaskTimerAsynchronously(plugin, 0, 20L * delay));
+        }.runTaskTimerAsynchronously(plugin, 0, 20L));
         return true;
     }
 }

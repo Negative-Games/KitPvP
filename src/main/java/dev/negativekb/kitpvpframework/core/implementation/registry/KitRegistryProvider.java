@@ -24,33 +24,19 @@
 
 package dev.negativekb.kitpvpframework.core.implementation.registry;
 
-import dev.negativekb.kitpvpframework.api.CosmeticManager;
+import dev.negativekb.kitpvpframework.api.KitManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffect;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessage;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSound;
+import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
+import dev.negativekb.kitpvpframework.kits.Kit;
 
 import java.util.Arrays;
 
-public class CosmeticRegistryImpl implements CosmeticRegistry {
+public class KitRegistryProvider implements KitRegistry {
     @Override
-    public void register(Object... clazzes) {
-        CosmeticManager manager = KitPvPAPI.getInstance().getCosmeticManager();
+    public void register(Kit... kits) {
+        KitPvPAPI api = KitPvPAPI.getInstance();
+        KitManager kitManager = api.getKitManager();
 
-        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillEffect).forEach(o -> {
-            KillEffect effect = (KillEffect) o;
-            manager.register(effect);
-        });
-
-        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillMessage).forEach(o -> {
-            KillMessage effect = (KillMessage) o;
-            manager.register(effect);
-        });
-
-        Arrays.stream(clazzes.clone()).filter(o -> o instanceof KillSound).forEach(o -> {
-            KillSound effect = (KillSound) o;
-            manager.register(effect);
-        });
+        Arrays.stream(kits).forEach(kitManager::register);
     }
 }

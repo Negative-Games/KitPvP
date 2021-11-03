@@ -22,27 +22,14 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.implementation.registry;
+package dev.negativekb.kitpvpframework.api.placeholder;
 
-import dev.negativekb.kitpvpframework.api.registry.ListenerRegistry;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.Player;
 
-import java.util.Arrays;
+public interface PAPIManager {
 
-public class ListenerRegisterImpl implements ListenerRegistry {
+    String request(Player player, String[] paths);
 
-    private final JavaPlugin plugin;
+    void addPlaceholder(PAPIPlaceholder placeholder);
 
-    public ListenerRegisterImpl(JavaPlugin plugin) {
-        this.plugin = plugin;
-    }
-
-    @Override
-    public void register(Listener... listeners) {
-        PluginManager pluginManager = Bukkit.getPluginManager();
-        Arrays.stream(listeners).forEach(listener -> pluginManager.registerEvents(listener, plugin));
-    }
 }
