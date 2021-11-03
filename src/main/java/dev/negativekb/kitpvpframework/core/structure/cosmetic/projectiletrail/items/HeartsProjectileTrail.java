@@ -22,40 +22,26 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.structure.profile;
+package dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.items;
 
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffectType;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessageType;
-import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoundType;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrail;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrailType;
-import lombok.Setter;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
 
-import java.util.Optional;
-
-public class ProfileCosmeticStatus {
-
-    @Setter
-    private KillEffectType killEffect;
-    @Setter
-    private KillMessageType killMessage;
-    @Setter
-    private KillSoundType killSound;
-    @Setter
-    private ProjectileTrailType projectileTrail;
-
-    public Optional<KillEffectType> getKillEffect() {
-        return Optional.ofNullable(killEffect);
+public class HeartsProjectileTrail extends ProjectileTrail {
+    public HeartsProjectileTrail() {
+        super(ProjectileTrailType.HEARTS);
     }
 
-    public Optional<KillMessageType> getKillMessage() {
-        return Optional.ofNullable(killMessage);
+    @Override
+    public void play(Player player, ProjectileLaunchEvent event) {
+
     }
 
-    public Optional<KillSoundType> getKillSound() {
-        return Optional.ofNullable(killSound);
-    }
-
-    public Optional<ProjectileTrailType> getProjectileType() {
-        return Optional.ofNullable(projectileTrail);
+    @Override
+    public ItemStack getIcon() {
+        return null;
     }
 }

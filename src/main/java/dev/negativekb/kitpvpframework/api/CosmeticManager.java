@@ -28,6 +28,7 @@ import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.KillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.KillMessage;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSound;
+import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.ProjectileTrail;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public interface CosmeticManager extends Disableable {
     ArrayList<KillSound> getKillSounds();
 
     /**
+     * Returns the cache arraylist of {@link ProjectileTrail}
+     */
+    ArrayList<ProjectileTrail> getProjectileTrails();
+
+    /**
      * Register a KillEffect instance to the cache
      *
      * @param killEffect Kill Effect instance
@@ -83,7 +89,12 @@ public interface CosmeticManager extends Disableable {
      */
     void register(KillSound killSound);
 
-    @Override
-    void onDisable();
+    /**
+     * Register a KillSound instance to the cache
+     *
+     * @param projectileTrail Kill Sound instance
+     * @apiNote Use {@link dev.negativekb.kitpvpframework.api.registry.CosmeticRegistry} to register Projectile Trails
+     */
+    void register(ProjectileTrail projectileTrail);
 
 }
