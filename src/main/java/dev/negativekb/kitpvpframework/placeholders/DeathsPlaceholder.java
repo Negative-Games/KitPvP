@@ -22,44 +22,36 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.placeholders;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
-import lombok.Getter;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.api.ProfileManager;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIPlaceholder;
+import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
+import dev.negativekb.kitpvpframework.core.util.Utils;
+import org.bukkit.entity.Player;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+import java.util.Optional;
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+public class DeathsPlaceholder extends PAPIPlaceholder {
+    private final ProfileManager profileManager;
 
-    public abstract ProfileManager getProfileManager();
-
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    public abstract PAPIManager getPAPIManager();
+    public DeathsPlaceholder() {
+        profileManager = getApi().getProfileManager();
+    }
 
     @Override
-    public abstract void onDisable();
+    public String getIdentifier() {
+        return "deaths";
+    }
 
+    @Override
+    public int triggerOnArgument() {
+        return 0;
+    }
+
+    @Override
+    public String onRequest(Player player, String[] paths) {
+        Optional<Profile> profile = profileManager.getProfile(player);
+        return (profile.isPresent() ? Utils.decimalFormat(profile.get().getDeaths()) : String.valueOf(0));
+    }
 }

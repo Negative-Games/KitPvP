@@ -22,44 +22,9 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.api.registry;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
-import lombok.Getter;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIPlaceholder;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
-
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
-
-    public abstract ProfileManager getProfileManager();
-
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    public abstract PAPIManager getPAPIManager();
-
-    @Override
-    public abstract void onDisable();
-
+public interface PlaceholderRegistry extends Registry<PAPIPlaceholder> {
 }
