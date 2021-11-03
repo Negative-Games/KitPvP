@@ -63,7 +63,11 @@ The message is defined inside the code.
 
 #### Kill Sounds
 
-When you kill a player it will send the killer the corresponding sound. The sound is defined inside of the code.
+When you kill a player it will send the killer the corresponding sound. The sound is defined inside the code.
+
+#### Projectile Trails
+
+When shooting a projectile it will run the corresponding code. The function is defined inside th e code.
 
 ### Ability Items
 
@@ -88,6 +92,19 @@ This framework contains a custom spawn system which will override any current sp
 so you can control it internally.
 
 Please read on how to use this API [here](https://wiki.deltapvp.club/deltaapi/the-basics/gui)!
+
+### Dynamic Placeholder System
+Using [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/), the framework has support for placeholders, by creating a new class that extends [PAPIPlaceholder](https://github.com/NegativeKB/KitPvP-Framework/blob/main/src/main/java/dev/negativekb/kitpvpframework/api/placeholder/PAPIPlaceholder.java) and filling in the information, it will create a new placeholder that PlaceholderAPI can use to determine different stats like Kills, Deaths, KDR and more.
+
+See [Kills Placeholder](https://github.com/NegativeKB/KitPvP-Framework/blob/main/src/main/java/dev/negativekb/kitpvpframework/placeholders/KillsPlaceholder.java) or [Deaths Placeholder](https://github.com/NegativeKB/KitPvP-Framework/blob/main/src/main/java/dev/negativekb/kitpvpframework/placeholders/DeathsPlaceholder.java) for examples.
+
+### Warp System
+The Warp system is a system where you can set global server warps players can go to.
+
+You can add a permission to a Warp so only players that match the required permission can travel to the warp.
+
+### Combat Tag
+This framework has a built-in Combat Tag system. Currently, the Combat Tag feature is used for determining if a player can Warp or go to Spawn.
 
 ## Notice
 
