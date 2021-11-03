@@ -26,6 +26,7 @@ This framework contains the following features
 * [Placeholders](https://github.com/NegativeKB/KitPvP-Framework#dynamic-placeholder-system)
 * [Warp System](https://github.com/NegativeKB/KitPvP-Framework#warp-system)
 * [Combat Tag System](https://github.com/NegativeKB/KitPvP-Framework#combat-tag)
+* [Cooldown System](https://github.com/NegativeKB/KitPvP-Framework#cooldown-system)
 
 ### Easy to use API
 
@@ -132,6 +133,10 @@ You can add a permission to a Warp so only players that match the required permi
 
 This framework has a built-in Combat Tag system. Currently, the Combat Tag feature is used for determining if a player
 can Warp or go to Spawn.
+
+### Cooldown System
+
+This framework has a cooldown system where you can add any type of cooldown and make the according checks in your code and it should work!
 
 ## Notice
 
