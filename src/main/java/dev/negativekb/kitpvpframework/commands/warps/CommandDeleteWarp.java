@@ -43,6 +43,7 @@ import static dev.negativekb.kitpvpframework.core.Locale.*;
 public class CommandDeleteWarp extends Command {
 
     private final WarpManager warpManager;
+
     public CommandDeleteWarp() {
         warpManager = KitPvPAPI.getInstance().getWarpManager();
 

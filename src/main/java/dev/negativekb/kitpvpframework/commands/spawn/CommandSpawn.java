@@ -42,6 +42,7 @@ import static dev.negativekb.kitpvpframework.core.Locale.SPAWN_ALREADY_TRANSPORT
 public class CommandSpawn extends Command {
 
     private final RegionManager regionManager;
+
     public CommandSpawn() {
         regionManager = KitPvPAPI.getInstance().getRegionManager();
     }

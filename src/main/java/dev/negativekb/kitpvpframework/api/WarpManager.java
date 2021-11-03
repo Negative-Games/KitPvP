@@ -37,35 +37,38 @@ import java.util.Optional;
  *
  * @author Negative
  * @since November 3rd, 2021
- *
+ * <p>
  * This module will manage all Warps and Warp teleportations
- *
+ * <p>
  * You can access this module by using {@link KitPvPAPI#getWarpManager()}
  */
 public interface WarpManager extends Disableable {
 
     /**
      * Teleport
-     * @param warp Warp instance
-     * @param player Player to be teleported
+     *
+     * @param warp    Warp instance
+     * @param player  Player to be teleported
      * @param message Will the server send the {@link dev.negativekb.kitpvpframework.core.Locale#WARP_SUCCESS} message?
      */
     void teleport(Warp warp, Player player, boolean message);
 
     /**
      * Teleport
-     * @param warp Warp instance
+     *
+     * @param warp   Warp instance
      * @param player Player to be teleported
-     * @param delay Delay in seconds until teleport is commenced
+     * @param delay  Delay in seconds until teleport is commenced
      * @return true if the teleport task has started
      */
     boolean teleport(Warp warp, Player player, int delay);
 
     /**
      * Teleport
-     * @param warp Warp instance
-     * @param player Player to be teleported
-     * @param delay Delay in seconds until the teleport is commenced
+     *
+     * @param warp          Warp instance
+     * @param player        Player to be teleported
+     * @param delay         Delay in seconds until the teleport is commenced
      * @param afterTeleport Code to be run after teleport has completed
      * @return true if the teleport task has started
      */
@@ -73,28 +76,32 @@ public interface WarpManager extends Disableable {
 
     /**
      * Teleport
-     * @param warp Warp instance
-     * @param player Player to be teleported
+     *
+     * @param warp          Warp instance
+     * @param player        Player to be teleported
      * @param afterTeleport Code to be run after teleport has completed
-     * @param message Will the server send the {@link dev.negativekb.kitpvpframework.core.Locale#WARP_SUCCESS} message?
+     * @param message       Will the server send the {@link dev.negativekb.kitpvpframework.core.Locale#WARP_SUCCESS} message?
      */
     void teleport(Warp warp, Player player, Runnable afterTeleport, boolean message);
 
     /**
      * Create a Warp with the provided name and location
-     * @param name Name of the Warp
+     *
+     * @param name     Name of the Warp
      * @param location Location of the Warp
      */
     void createWarp(String name, Location location);
 
     /**
      * Delete/Remove a Warp from the cache
+     *
      * @param warp Warp instance
      */
     void deleteWarp(Warp warp);
 
     /**
      * Get a Warp instance from the name provided
+     *
      * @param name Name of the potential Warp
      * @return If the warp exists, return. If not, return empty.
      */

@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 public class RegionManagerProvider extends ObjectCache<Region> implements RegionManager {
 
     private ArrayList<Region> regions;
+
     @SneakyThrows
     public RegionManagerProvider(JavaPlugin plugin) {
         super(plugin.getDataFolder().getPath() + "/data/regions.json", Region[].class);

@@ -41,7 +41,6 @@ public class WarpLocation {
     private float pitch;
 
 
-
     public Location toLocation() {
         return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
