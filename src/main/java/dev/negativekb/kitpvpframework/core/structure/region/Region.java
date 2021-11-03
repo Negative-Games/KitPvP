@@ -32,10 +32,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Data
 public class Region {
@@ -153,11 +150,11 @@ public class Region {
         return Boolean.parseBoolean(String.valueOf(flagObject));
     }
 
-    public String getFlagString(RegionFlag flag) {
+    public Optional<String> getFlagString(RegionFlag flag) {
         if (!flag.getDataType().equals(RegionFlagDataType.STRING))
             throw new InvalidFlagDataTypeException("This flag type is not a String.");
 
         Object flagObject = getFlagObject(flag);
-        return String.valueOf(flagObject);
+        return Optional.ofNullable(String.valueOf(flagObject));
     }
 }
