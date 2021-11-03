@@ -80,60 +80,57 @@ public class PlayerListener implements Listener {
 
         Player player = event.getEntity();
         Optional<Profile> stats = profileManager.getProfile(player);
-        if (!stats.isPresent()) // Somehow this player has no stats…
-            return;
+        stats.ifPresent(profile -> {
+            profile.addDeaths(1);
+            profile.getCurrentKit().getKit().ifPresent(kit -> kit.onDeathEvent(event));
 
-        Profile victimProfile = stats.get();
-        victimProfile.addDeaths(1);
-        victimProfile.getCurrentKit().getKit().ifPresent(kit -> kit.onDeathEvent(event));
+            if (profile.getKillStreak() >= 10) {
+                KILLSTREAK_ENDED.replace("%player%", player.getName())
+                        .replace("%amount%", Utils.decimalFormat(profile.getKillStreak()))
+                        .broadcast();
+            }
 
-        if (victimProfile.getKillStreak() >= 10) {
-            KILLSTREAK_ENDED.replace("%player%", player.getName())
-                    .replace("%amount%", Utils.decimalFormat(victimProfile.getKillStreak()))
-                    .broadcast();
-        }
-
-        victimProfile.setKillStreak(0);
+            profile.setKillStreak(0);
+        });
 
         if (player.getKiller() == null)
             return;
 
         Player killer = player.getKiller();
         Optional<Profile> kStats = profileManager.getProfile(killer);
-        if (!kStats.isPresent())
-            return; // Somehow the killer has no stats...?
+        kStats.ifPresent(profile -> {
+            profile.addKills(1);
+            profile.addKillStreak(1);
 
-        Profile killerProfile = kStats.get();
-        killerProfile.addKills(1);
-        killerProfile.addKillStreak(1);
+            int ks = profile.getKillStreak();
+            if (profile.getBestKillStreak() < ks)
+                profile.setBestKillStreak(ks);
 
-        int ks = killerProfile.getKillStreak();
-        if (killerProfile.getBestKillStreak() < ks)
-            killerProfile.setBestKillStreak(ks);
+            if (ks % 10 == 0) {
+                KILLSTREAK_REACHED.replace("%player%", killer.getName())
+                        .replace("%amount%", Utils.decimalFormat(ks))
+                        .broadcast();
+            }
 
-        if (ks % 10 == 0) {
-            KILLSTREAK_REACHED.replace("%player%", killer.getName())
-                    .replace("%amount%", Utils.decimalFormat(ks))
-                    .broadcast();
-        }
+            ProfileCosmeticStatus killerCosmetics = profile.getCosmetics();
+            killerCosmetics.getKillEffect().flatMap(KillEffectType::getKillEffect)
+                    .ifPresent(killEffect -> killEffect.apply(killer, player, player.getLocation()));
 
-        ProfileCosmeticStatus killerCosmetics = killerProfile.getCosmetics();
-        killerCosmetics.getKillEffect().flatMap(KillEffectType::getKillEffect)
-                .ifPresent(killEffect -> killEffect.apply(killer, player, player.getLocation()));
+            killerCosmetics.getKillMessage().flatMap(KillMessageType::getKillMessage)
+                    .ifPresent(killMessage -> killMessage.send(player, killer));
 
-        killerCosmetics.getKillMessage().flatMap(KillMessageType::getKillMessage)
-                .ifPresent(killMessage -> killMessage.send(player, killer));
+            killerCosmetics.getKillSound().flatMap(KillSoundType::getKillSound)
+                    .ifPresent(killSound -> killSound.send(player, killer));
 
-        killerCosmetics.getKillSound().flatMap(KillSoundType::getKillSound)
-                .ifPresent(killSound -> killSound.send(player, killer));
+            if (!killerCosmetics.getKillMessage().isPresent()) {
+                KillMessageType.DEFAULT.getKillMessage().ifPresent(killMessage -> killMessage.send(player, killer));
+            }
 
-        if (!killerCosmetics.getKillMessage().isPresent()) {
-            KillMessageType.DEFAULT.getKillMessage().ifPresent(killMessage -> killMessage.send(player, killer));
-        }
+            if (!killerCosmetics.getKillSound().isPresent()) {
+                KillSoundType.DEFAULT.getKillSound().ifPresent(killSound -> killSound.send(player, killer));
+            }
+        });
 
-        if (!killerCosmetics.getKillSound().isPresent()) {
-            KillSoundType.DEFAULT.getKillSound().ifPresent(killSound -> killSound.send(player, killer));
-        }
     }
 
     @EventHandler
@@ -198,11 +195,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         ItemStack itemInHand = player.getItemInHand();
         Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
-        if (!item.isPresent())
-            return;
-
-        AbilityItem abilityItem = item.get();
-        abilityItem.onRightClickEntity(event);
+        item.ifPresent(abilityItem -> abilityItem.onRightClickEntity(event));
     }
 
     @EventHandler
@@ -241,11 +234,7 @@ public class PlayerListener implements Listener {
 
         ItemStack itemInHand = damager.getItemInHand();
         Optional<AbilityItem> item = abilityItemManager.getItem(itemInHand);
-        if (!item.isPresent())
-            return;
-
-        AbilityItem abilityItem = item.get();
-        abilityItem.onPlayerDamage(event);
+        item.ifPresent(abilityItem -> abilityItem.onPlayerDamage(event));
     }
 
     private void combatTag(Player victim, Player damager) {

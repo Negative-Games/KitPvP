@@ -49,9 +49,6 @@ public class CommandKit extends Command {
     public void onCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         Optional<Profile> stats = profileManager.getProfile(player);
-        if (!stats.isPresent())
-            return; // The player has no stats for some reason?
-
-        new KitMenu(stats.get(), 1).open(player);
+        stats.ifPresent(profile -> new KitMenu(profile, 1).open(player));
     }
 }
