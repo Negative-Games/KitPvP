@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.kits;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.util.UtilPlayer;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class Kit {
+public abstract class Kit implements Disableable {
 
     @Getter
     private final Kits type;
@@ -132,7 +133,7 @@ public abstract class Kit {
         this.rightClickEntityEventConsumer = function;
     }
 
-    public void onRightClickEntity(PlayerInteractAtEntityEvent event) {
+    public void onRightClickEntityEvent(PlayerInteractAtEntityEvent event) {
         if (rightClickEntityEventConsumer == null)
             return;
 
@@ -206,5 +207,6 @@ public abstract class Kit {
         damagePlayerEventConsumer.accept(event);
     }
 
+    @Override
     public abstract void onDisable();
 }
