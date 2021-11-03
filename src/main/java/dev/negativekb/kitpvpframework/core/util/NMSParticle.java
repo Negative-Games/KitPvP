@@ -24,34 +24,24 @@
 
 package dev.negativekb.kitpvpframework.core.util;
 
+import lombok.RequiredArgsConstructor;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+@RequiredArgsConstructor
 public class NMSParticle {
 
-    private EnumParticle particleType;
-    private boolean longDistance;
-    private Location location;
-    private float offSetX;
-    private float offSetY;
-    private float offSetZ;
-    private float speed;
-    private int amount;
-
-
-    public NMSParticle(EnumParticle particleType, Location location, boolean longDistance, float offSetX, float offSetY, float offSetZ, float speed, int amount) {
-        this.particleType = particleType;
-        this.location = location;
-        this.longDistance = longDistance;
-        this.offSetX = offSetX;
-        this.offSetY = offSetY;
-        this.offSetZ = offSetZ;
-        this.speed = speed;
-        this.amount = amount;
-    }
+    private final EnumParticle particleType;
+    private final boolean longDistance;
+    private final Location location;
+    private final float offSetX;
+    private final float offSetY;
+    private final float offSetZ;
+    private final float speed;
+    private final int amount;
 
     public void send(Player player){
         PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(this.particleType, this.longDistance, (float)this.location.getX(), (float)this.location.getY(),
