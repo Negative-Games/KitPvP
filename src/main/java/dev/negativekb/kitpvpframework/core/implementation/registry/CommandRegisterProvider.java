@@ -34,7 +34,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Map;
 
-public class CommandRegisterImpl implements CommandRegistry {
+public class CommandRegisterProvider implements CommandRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
