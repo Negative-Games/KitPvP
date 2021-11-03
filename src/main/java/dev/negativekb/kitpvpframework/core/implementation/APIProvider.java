@@ -38,6 +38,7 @@ public class APIProvider extends KitPvPAPI {
     private final KitManager kitManager;
     private final CombatManager combatManager;
     private final RegionManager regionManager;
+    private final WarpManager warpManager;
 
     private final ArrayList<Object> disableableCache = new ArrayList<>();
 
@@ -59,6 +60,9 @@ public class APIProvider extends KitPvPAPI {
 
         combatManager = new CombatManagerProvider(plugin);
         attemptAddDisableable(combatManager);
+
+        warpManager = new WarpManagerProvider(plugin);
+        attemptAddDisableable(warpManager);
     }
 
     @Override
@@ -89,6 +93,11 @@ public class APIProvider extends KitPvPAPI {
     @Override
     public RegionManager getRegionManager() {
         return regionManager;
+    }
+
+    @Override
+    public WarpManager getWarpManager() {
+        return warpManager;
     }
 
     @Override

@@ -45,6 +45,8 @@ import java.util.List;
 @Getter
 public enum Locale {
 
+    CANNOT_DO_IN_COMBAT(Collections.singletonList("&cYou cannot do this while in Combat!")),
+
     // Commands
     COMMAND_DISABLED(Collections.singletonList("&cThis command is disabled.")),
     COMMAND_CANNOT_DO_THIS(Collections.singletonList("&cYou cannot do this.")),
@@ -86,6 +88,21 @@ public enum Locale {
     REGION_TELEPORT(Collections.singletonList("&7You have teleported to the Region &b%name%&b.")),
     REGION_NOT_EXISTS(Collections.singletonList("&7The Region &b%name% &7does not exists.")),
     REGION_ALREADY_EXISTS(Collections.singletonList("&7The Region &b%name% &7already exists")),
+
+    WARP_TIMER(Collections.singletonList("&aTeleporting to &e%warp% &ain &e%time% &asecond(s).")),
+    WARP_SUCCESS(Collections.singletonList("&aSuccessfully teleported to &e%warp%&a!")),
+    WARP_ALREADY_TRANSPORTING(Collections.singletonList("&cYou are already going through a Warp transportation.")),
+    WARP_CANCELLED(Collections.singletonList("&cYour warp transportation has been cancelled due to movement or being attacked.")),
+    SET_WARP_SUCCESS(Collections.singletonList("&aYou have successfully created the warp &e%warp%&a.")),
+    DELETE_WARP_SUCCESS(Collections.singletonList("&cYou have deleted the warp &e%warp%&a.")),
+
+    WARP_COMMAND_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /warp <name>")),
+    WARP_COMMAND_INVALID_WARP(Collections.singletonList("&cInvalid warp name &e%name%&c.")),
+
+    SETWARP_COMMAND_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /setwarp <name>")),
+    SETWARP_COMMAND_ALREADY_EXISTS(Collections.singletonList("&cThe Warp &e%name% &calready exists!")),
+
+    DELETE_WARP_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /delwarp <name>")),
     ;
 
 

@@ -22,41 +22,36 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.core.structure.warp;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+import java.util.Optional;
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+@Data
+public class Warp {
 
-    public abstract ProfileManager getProfileManager();
+    private String name;
+    private String permission;
+    private WarpLocation location;
 
-    public abstract AbilityItemManager getAbilityItemManager();
+    public boolean hasPermission() {
+        return getPermission().isPresent();
+    }
 
-    public abstract CosmeticManager getCosmeticManager();
+    public Optional<String> getPermission() {
+        return Optional.ofNullable(permission);
+    }
 
-    public abstract KitManager getKitManager();
+    public void teleport(Player player) {
+        teleport(player, null);
+    }
 
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    @Override
-    public abstract void onDisable();
+    public void teleport(Player player, Runnable afterTeleport) {
+        player.teleport(location.toLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
+        Optional.ofNullable(afterTeleport).ifPresent(Runnable::run);
+    }
 
 }

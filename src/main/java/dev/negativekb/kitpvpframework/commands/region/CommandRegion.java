@@ -30,8 +30,12 @@ import dev.negativekb.kitpvpframework.core.command.Command;
 import dev.negativekb.kitpvpframework.core.command.CommandInfo;
 import dev.negativekb.kitpvpframework.core.command.SubCommand;
 import dev.negativekb.kitpvpframework.core.structure.region.Region;
+import dev.negativekb.kitpvpframework.core.util.builder.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
@@ -140,6 +144,31 @@ public class CommandRegion extends Command {
         @Override
         public void runCommand(CommandSender sender, String[] args) {
 
+        }
+    }
+
+    @CommandInfo(name = "wand", playerOnly = true)
+    private class Wand extends SubCommand {
+
+        private final ItemStack wand;
+
+        public Wand() {
+            wand = new ItemBuilder(Material.STONE_AXE).setName("&a&lRegion Wand")
+                    .setLore(
+                            "&7Create regions using this wand!",
+                            " ",
+                            "&d&lActions",
+                            "&bLeft-Click &7to claim Position 1",
+                            "&bRight-Click &7to claim Position 2"
+                    ).addEnchant(Enchantment.DURABILITY, 10)
+                    .addEnchant(Enchantment.DAMAGE_ALL, 10)
+                    .build();
+        }
+
+        @Override
+        public void runCommand(CommandSender sender, String[] args) {
+            Player player = (Player) sender;
+            player.getInventory().addItem(wand);
         }
     }
 
