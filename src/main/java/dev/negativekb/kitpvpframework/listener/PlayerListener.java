@@ -33,7 +33,9 @@ import dev.negativekb.kitpvpframework.core.structure.profile.Profile;
 import dev.negativekb.kitpvpframework.core.structure.profile.ProfileCosmeticStatus;
 import dev.negativekb.kitpvpframework.core.structure.region.Region;
 import dev.negativekb.kitpvpframework.core.structure.region.RegionFlag;
+import dev.negativekb.kitpvpframework.core.util.UtilSpawn;
 import dev.negativekb.kitpvpframework.core.util.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -48,8 +50,11 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.List;
@@ -64,8 +69,11 @@ public class PlayerListener implements Listener {
     private final AbilityItemManager abilityItemManager;
     private final CombatManager combatManager;
     private final RegionManager regionManager;
+    private final JavaPlugin plugin;
 
-    public PlayerListener() {
+    public PlayerListener(JavaPlugin plugin) {
+        this.plugin = plugin;
+
         KitPvPAPI api = KitPvPAPI.getInstance();
         profileManager = api.getProfileManager();
         abilityItemManager = api.getAbilityItemManager();
@@ -358,4 +366,19 @@ public class PlayerListener implements Listener {
         if (!canExplode)
             event.setCancelled(true);
     }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> UtilSpawn.teleport(player, false), 1);
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> UtilSpawn.teleport(player, false), 1);
+    }
+
 }
