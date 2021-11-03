@@ -35,6 +35,7 @@ import dev.negativekb.kitpvpframework.commands.warps.CommandSetWarp;
 import dev.negativekb.kitpvpframework.commands.warps.CommandWarp;
 import dev.negativekb.kitpvpframework.core.Locale;
 import dev.negativekb.kitpvpframework.core.implementation.APIProvider;
+import dev.negativekb.kitpvpframework.core.implementation.placeholder.PAPIExpansionProvider;
 import dev.negativekb.kitpvpframework.core.implementation.registry.*;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.items.BloodExplosionKillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.items.DefaultKillMessage;
@@ -44,6 +45,8 @@ import dev.negativekb.kitpvpframework.listener.GUIListener;
 import dev.negativekb.kitpvpframework.listener.PlayerListener;
 import dev.negativekb.kitpvpframework.listener.PlayerRegionListener;
 import dev.negativekb.kitpvpframework.listener.ProfileInitializerListener;
+import dev.negativekb.kitpvpframework.placeholders.DeathsPlaceholder;
+import dev.negativekb.kitpvpframework.placeholders.KillsPlaceholder;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -68,6 +71,7 @@ public final class KitPvPFramework extends JavaPlugin {
         CosmeticRegistry cosmeticRegistry = new CosmeticRegistryProvider();
         KitRegistry kitRegistry = new KitRegistryProvider();
         AbilityItemRegistry abilityItemRegistry = new AbilityItemRegistryProvider();
+        PlaceholderRegistry placeholderRegistry = new PlaceholderRegistryProvider();
 
         commandRegistry.register(
                 new CommandKit(),
@@ -104,6 +108,13 @@ public final class KitPvPFramework extends JavaPlugin {
         abilityItemRegistry.register(
 
         );
+
+        placeholderRegistry.register(
+                new KillsPlaceholder(),
+                new DeathsPlaceholder()
+        );
+        // Placeholder API Implementation
+        new PAPIExpansionProvider();
     }
 
     @Override

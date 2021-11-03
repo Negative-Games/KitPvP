@@ -22,44 +22,25 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.api.placeholder;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import lombok.Getter;
-import lombok.Setter;
+import org.bukkit.entity.Player;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+public abstract class PAPIPlaceholder {
 
     @Getter
-    @Setter
-    private static KitPvPAPI instance;
+    private final KitPvPAPI api;
 
-    public abstract ProfileManager getProfileManager();
+    public PAPIPlaceholder() {
+        api = KitPvPAPI.getInstance();
+    }
 
-    public abstract AbilityItemManager getAbilityItemManager();
+    public abstract String getIdentifier();
 
-    public abstract CosmeticManager getCosmeticManager();
+    public abstract int triggerOnArgument();
 
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    public abstract PAPIManager getPAPIManager();
-
-    @Override
-    public abstract void onDisable();
+    public abstract String onRequest(Player player, String[] paths);
 
 }

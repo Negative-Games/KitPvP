@@ -26,6 +26,8 @@ package dev.negativekb.kitpvpframework.core.implementation;
 
 import dev.negativekb.kitpvpframework.api.*;
 import dev.negativekb.kitpvpframework.api.options.Disableable;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
+import dev.negativekb.kitpvpframework.core.implementation.placeholder.PAPIManagerProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class APIProvider extends KitPvPAPI {
     private final CombatManager combatManager;
     private final RegionManager regionManager;
     private final WarpManager warpManager;
+    private final PAPIManager papiManager;
 
     private final ArrayList<Object> disableableCache = new ArrayList<>();
 
@@ -63,6 +66,9 @@ public class APIProvider extends KitPvPAPI {
 
         warpManager = new WarpManagerProvider(plugin);
         attemptAddDisableable(warpManager);
+
+        papiManager = new PAPIManagerProvider();
+        attemptAddDisableable(papiManager);
     }
 
     @Override
@@ -98,6 +104,11 @@ public class APIProvider extends KitPvPAPI {
     @Override
     public WarpManager getWarpManager() {
         return warpManager;
+    }
+
+    @Override
+    public PAPIManager getPAPIManager() {
+        return papiManager;
     }
 
     @Override

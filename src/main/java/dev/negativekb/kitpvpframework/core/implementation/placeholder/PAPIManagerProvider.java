@@ -22,44 +22,33 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.core.implementation.placeholder;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
-import lombok.Getter;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIPlaceholder;
+import org.bukkit.entity.Player;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+import java.util.ArrayList;
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+public class PAPIManagerProvider implements PAPIManager {
 
-    public abstract ProfileManager getProfileManager();
-
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    public abstract PAPIManager getPAPIManager();
+    private final ArrayList<PAPIPlaceholder> placeholders = new ArrayList<>();
 
     @Override
-    public abstract void onDisable();
+    public String request(Player player, String[] paths) {
+        PAPIPlaceholder papiPlaceholder = this.placeholders.stream().filter(placeholder -> {
+            String identifier = placeholder.getIdentifier();
+            int i = placeholder.triggerOnArgument();
+
+            return (paths[i].equalsIgnoreCase(identifier));
+        }).findFirst().orElse(null);
+
+        return (papiPlaceholder == null ? null : papiPlaceholder.onRequest(player, paths));
+    }
+
+    @Override
+    public void addPlaceholder(PAPIPlaceholder placeholder) {
+        this.placeholders.add(placeholder);
+    }
 
 }

@@ -22,44 +22,25 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.core.implementation.registry;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.placeholder.PAPIManager;
-import lombok.Getter;
-import lombok.Setter;
+import dev.negativekb.kitpvpframework.api.placeholder.PAPIPlaceholder;
+import dev.negativekb.kitpvpframework.api.registry.PlaceholderRegistry;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+import java.util.Arrays;
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+public class PlaceholderRegistryProvider implements PlaceholderRegistry {
 
-    public abstract ProfileManager getProfileManager();
+    private final PAPIManager papiManager;
 
-    public abstract AbilityItemManager getAbilityItemManager();
-
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    public abstract PAPIManager getPAPIManager();
+    public PlaceholderRegistryProvider() {
+        papiManager = KitPvPAPI.getInstance().getPAPIManager();
+    }
 
     @Override
-    public abstract void onDisable();
-
+    public void register(PAPIPlaceholder... types) {
+        Arrays.stream(types).forEach(papiManager::addPlaceholder);
+    }
 }
