@@ -39,14 +39,15 @@ import java.util.Optional;
  * @since October 28th, 2021
  * <p>
  * This module will manage all regions
- *
+ * <p>
  * You can access this module by using {@link KitPvPAPI#getRegionManager()}
  */
 public interface RegionManager extends Disableable {
 
     /**
      * Create a Region with the provided name and location positions
-     * @param name Region Name
+     *
+     * @param name      Region Name
      * @param position1 Position 1
      * @param position2 Position 2
      */
@@ -54,6 +55,7 @@ public interface RegionManager extends Disableable {
 
     /**
      * Delete a Region instance from the cache
+     *
      * @param region Region instance
      */
     void deleteRegion(Region region);
@@ -61,6 +63,7 @@ public interface RegionManager extends Disableable {
     /**
      * Get the Region with the highest priority at
      * the location provided
+     *
      * @param location Location
      * @return If there is a Region at the provided location, return. If not, return empty.
      */
@@ -68,6 +71,7 @@ public interface RegionManager extends Disableable {
 
     /**
      * Get the Region with the name provided
+     *
      * @param name Region Name
      * @return If there is a Region which has the name provided, return. If not, return empty.
      */
@@ -75,6 +79,7 @@ public interface RegionManager extends Disableable {
 
     /**
      * Returns all the Regions at the provided location
+     *
      * @param location Location
      * @return If there are regions at the location provided, return the list of regions, if not, return empty.
      */
@@ -82,6 +87,7 @@ public interface RegionManager extends Disableable {
 
     /**
      * Returns all the Regions at the provided player's location
+     *
      * @param player Player instance
      * @return If there are regions at the provided player's location, return the list of regions, if not, return empty.
      */

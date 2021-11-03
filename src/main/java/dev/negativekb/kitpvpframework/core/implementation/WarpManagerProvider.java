@@ -45,9 +45,9 @@ import static dev.negativekb.kitpvpframework.core.Locale.*;
 
 public class WarpManagerProvider extends ObjectCache<Warp> implements WarpManager {
 
-    private ArrayList<Warp> warps;
     private final HashMap<UUID, BukkitTask> warpTasks = new HashMap<>();
     private final JavaPlugin plugin;
+    private ArrayList<Warp> warps;
 
     @SneakyThrows
     public WarpManagerProvider(JavaPlugin plugin) {

@@ -43,7 +43,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.REGION_ALREADY_EXISTS;
+import static dev.negativekb.kitpvpframework.core.Locale.REGION_HELP;
 
 @CommandInfo(name = "region", permission = "kitpvp.region")
 public class CommandRegion extends Command {

@@ -33,8 +33,7 @@ public enum CosmeticType {
     KILL_EFFECT("kill-effect", "Kill Effect"),
     KILL_MESSAGE("kill-message", "Kill Message"),
     KILL_SOUND("kill-effect", "Kill Sound"),
-    PROJECTILE_TRAIL("projectile-trail", "Projectile Trail")
-    ;
+    PROJECTILE_TRAIL("projectile-trail", "Projectile Trail");
     private final String id;
     private final String name;
 }

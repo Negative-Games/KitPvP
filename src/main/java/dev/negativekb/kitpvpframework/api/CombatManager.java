@@ -33,15 +33,16 @@ import java.util.UUID;
  *
  * @author Negative
  * @since October 28th, 2021
- *
+ * <p>
  * This module will manage all the users in Combat Tag
- *
+ * <p>
  * You can access this module by using {@link KitPvPAPI#getCombatManager()}
  */
 public interface CombatManager {
 
     /**
      * Checks if a UUID is in Combat
+     *
      * @param uuid UUID
      * @return If the UUID instance is in the combat tag map, return true.
      */
@@ -49,6 +50,7 @@ public interface CombatManager {
 
     /**
      * Checks if a Player is in Combat
+     *
      * @param player Player
      * @return If the Player instance is in the combat tag map, return true.
      */
@@ -56,14 +58,16 @@ public interface CombatManager {
 
     /**
      * Adds a UUID to the combat map or updates the UUID in the combat map to the new time
-     * @param uuid UUID
+     *
+     * @param uuid     UUID
      * @param duration Duration in {@link java.util.concurrent.TimeUnit#MILLISECONDS}
      */
     void addOrUpdateCombat(UUID uuid, long duration, boolean message);
 
     /**
      * Removes a UUID from the combat map
-     * @param uuid UUID
+     *
+     * @param uuid    UUID
      * @param message Message the player if they are online
      */
     void removeFromCombat(UUID uuid, boolean message);

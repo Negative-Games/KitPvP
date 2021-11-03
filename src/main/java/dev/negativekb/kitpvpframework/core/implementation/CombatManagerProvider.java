@@ -26,7 +26,6 @@ package dev.negativekb.kitpvpframework.core.implementation;
 
 import dev.negativekb.kitpvpframework.api.CombatManager;
 import dev.negativekb.kitpvpframework.core.util.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -37,11 +36,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static dev.negativekb.kitpvpframework.core.Locale.*;
+import static dev.negativekb.kitpvpframework.core.Locale.COMBAT_ENGAGED;
+import static dev.negativekb.kitpvpframework.core.Locale.COMBAT_OUT_OF_COMBAT;
 
 public class CombatManagerProvider implements CombatManager {
 
     private final HashMap<UUID, Long> combatMap = new HashMap<>();
+
     public CombatManagerProvider(JavaPlugin plugin) {
         new CombatTagTimerTask().runTaskTimerAsynchronously(plugin, 0, 20);
     }

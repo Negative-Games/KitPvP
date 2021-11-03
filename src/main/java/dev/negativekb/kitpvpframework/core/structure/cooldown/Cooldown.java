@@ -22,32 +22,18 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.util;
+package dev.negativekb.kitpvpframework.core.structure.cooldown;
 
-import lombok.RequiredArgsConstructor;
-import net.minecraft.server.v1_8_R3.EnumParticle;
-import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
-import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.entity.Player;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@RequiredArgsConstructor
-public class NMSParticle {
+@Data
+@AllArgsConstructor
+public class Cooldown {
 
-    private final EnumParticle particleType;
-    private final boolean longDistance;
-    private final Location location;
-    private final float offSetX;
-    private final float offSetY;
-    private final float offSetZ;
-    private final float speed;
-    private final int amount;
-
-    public void send(Player player) {
-        PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(this.particleType, this.longDistance, (float) this.location.getX(), (float) this.location.getY(),
-                (float) this.location.getZ(), this.offSetX, this.offSetY, this.offSetZ, this.speed, this.amount);
-
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-    }
+    private final int id;
+    private final CooldownType type;
+    private long dateAdded;
+    private long dateExpired;
 
 }

@@ -27,7 +27,6 @@ package dev.negativekb.kitpvpframework.kits;
 import dev.negativekb.kitpvpframework.core.util.UtilPlayer;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;

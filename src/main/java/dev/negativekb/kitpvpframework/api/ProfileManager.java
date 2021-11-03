@@ -40,7 +40,7 @@ import java.util.UUID;
  * @since October 27th, 2021
  * <p>
  * This module will manage and contain all player data / profiles
- *
+ * <p>
  * You can access this module by using {@link KitPvPAPI#getProfileManager()}
  */
 public interface ProfileManager extends Disableable {

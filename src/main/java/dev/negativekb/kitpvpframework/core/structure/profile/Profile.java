@@ -24,6 +24,8 @@
 
 package dev.negativekb.kitpvpframework.core.structure.profile;
 
+import dev.negativekb.kitpvpframework.core.structure.cooldown.Cooldown;
+import dev.negativekb.kitpvpframework.core.structure.cooldown.CooldownType;
 import dev.negativekb.kitpvpframework.kits.Kits;
 import lombok.Data;
 import org.bukkit.Bukkit;
@@ -31,7 +33,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /**
  * This is the Profile class where all user-based
@@ -50,6 +55,7 @@ public class Profile {
     private ProfileCosmeticStatus cosmetics;
     private Kits currentKit;
     private ArrayList<Kits> unlockedKits;
+    private ArrayList<Cooldown> cooldowns;
 
     public Player getPlayer() {
         return Bukkit.getPlayer(uniqueID);
@@ -108,5 +114,30 @@ public class Profile {
         unlockedKits.remove(type);
         if (unlockedKits.isEmpty())
             setUnlockedKits(null);
+    }
+
+    public int generateCooldownID() {
+        Stream<Cooldown> sorted = cooldowns.stream().sorted(Comparator.comparingInt(Cooldown::getId).reversed());
+        return sorted.findFirst().map(cooldown -> cooldown.getId() + 1).orElse(1);
+    }
+
+    public void addCooldown(Cooldown cooldown) {
+        if (cooldowns == null)
+            cooldowns = new ArrayList<>();
+
+        if (getCooldown(cooldown.getType()).isPresent())
+            return;
+
+        cooldowns.add(cooldown);
+    }
+
+    public void removeCooldown(Cooldown cooldown) {
+        cooldowns.remove(cooldown);
+        if (cooldowns.isEmpty())
+            setCooldowns(null);
+    }
+
+    public Optional<Cooldown> getCooldown(CooldownType type) {
+        return cooldowns.stream().filter(cooldown -> cooldown.getType().equals(type)).findFirst();
     }
 }

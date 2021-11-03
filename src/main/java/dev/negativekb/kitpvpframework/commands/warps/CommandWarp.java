@@ -104,7 +104,7 @@ public class CommandWarp extends Command {
         }
 
         // Permission check
-        if (theWarp.getPermission().isPresent()){
+        if (theWarp.getPermission().isPresent()) {
             String perm = theWarp.getPermission().get();
             if (!player.hasPermission(perm)) {
                 COMMAND_NO_PERMISSION.send(player);
