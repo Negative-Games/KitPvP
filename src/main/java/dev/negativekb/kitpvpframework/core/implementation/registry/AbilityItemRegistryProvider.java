@@ -40,7 +40,8 @@ public class AbilityItemRegistryProvider implements AbilityItemRegistry {
     }
 
     @Override
-    public void register(AbilityItem... items) {
-        Arrays.stream(items).forEach(abilityItemManager::registerItem);
+    public void register(AbilityItem... types) {
+        Arrays.stream(types).forEach(abilityItemManager::registerItem);
     }
+
 }

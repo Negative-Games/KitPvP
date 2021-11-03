@@ -24,11 +24,9 @@
 
 package dev.negativekb.kitpvpframework.api.registry;
 
-import dev.negativekb.kitpvpframework.kits.Kit;
+public interface Registry<T> {
 
-/**
- *
- */
-public interface KitRegistry extends Registry<Kit> {
+    @SuppressWarnings("unchecked")
+    void register(T... types);
 
 }

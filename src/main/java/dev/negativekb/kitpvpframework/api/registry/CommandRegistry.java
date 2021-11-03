@@ -34,13 +34,6 @@ import dev.negativekb.kitpvpframework.core.command.Command;
  * <p>
  * This module contains the registry for Commands.
  */
-public interface CommandRegistry {
-
-    /**
-     * Register an array of Commands
-     *
-     * @param commands Command array
-     */
-    void register(Command... commands);
+public interface CommandRegistry extends Registry<Command> {
 
 }
