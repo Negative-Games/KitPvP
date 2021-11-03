@@ -95,7 +95,12 @@ public enum Locale {
     DELETE_WARP_SUCCESS(Collections.singletonList("&cYou have deleted the warp &e%warp%&a.")),
 
     WARP_COMMAND_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /warp <name>")),
-    WARP_COMMAND_INVALID_WARP(Collections.singletonList("&cInvalid warp name &e%name%")),
+    WARP_COMMAND_INVALID_WARP(Collections.singletonList("&cInvalid warp name &e%name%&c.")),
+
+    SETWARP_COMMAND_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /setwarp <name>")),
+    SETWARP_COMMAND_ALREADY_EXISTS(Collections.singletonList("&cThe Warp &e%name% &calready exists!")),
+
+    DELETE_WARP_INVALID_ARGS(Collections.singletonList("&cInvalid arguments! /delwarp <name>")),
     ;
 
 

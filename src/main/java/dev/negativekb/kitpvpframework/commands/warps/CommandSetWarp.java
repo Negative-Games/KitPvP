@@ -34,6 +34,8 @@ import org.bukkit.entity.Player;
 
 import java.util.Optional;
 
+import static dev.negativekb.kitpvpframework.core.Locale.*;
+
 @CommandInfo(name = "setwarp", playerOnly = true, permission = "kitpvp.warps.setwarp")
 public class CommandSetWarp extends Command {
 
@@ -47,18 +49,18 @@ public class CommandSetWarp extends Command {
     public void onCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         if (args.length == 0) {
-            // TODO: Make a args msg
+            SETWARP_COMMAND_INVALID_ARGS.send(player);
             return;
         }
 
         String arg = args[0];
         Optional<Warp> theWarp = warpManager.getWarp(arg);
         if (theWarp.isPresent()) {
-            // TODO: Make already exists message
+            SETWARP_COMMAND_ALREADY_EXISTS.replace("%name%", theWarp.get().getName());
             return;
         }
 
         warpManager.createWarp(arg, player.getLocation());
-        // TODO: Make created warp message
+        SET_WARP_SUCCESS.replace("%warp%", arg).send(player);
     }
 }

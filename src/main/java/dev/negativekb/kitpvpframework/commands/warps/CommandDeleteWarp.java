@@ -65,14 +65,14 @@ public class CommandDeleteWarp extends Command {
     public void onCommand(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         if (args.length == 0) {
-            // TODO: Send invalid args msg
+            DELETE_WARP_INVALID_ARGS.send(player);
             return;
         }
 
         String arg = args[0];
         Optional<Warp> theWarp = warpManager.getWarp(arg);
         if (!theWarp.isPresent()) {
-            // TODO: Send invalid warp msg
+            WARP_COMMAND_INVALID_WARP.replace("%name%", arg).send(player);
             return;
         }
 
