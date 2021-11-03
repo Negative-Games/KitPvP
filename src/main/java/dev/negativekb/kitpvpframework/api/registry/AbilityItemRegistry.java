@@ -34,8 +34,7 @@ import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
  * <p>
  * This module contains the registry for Commands.
  */
-public interface AbilityItemRegistry {
+public interface AbilityItemRegistry extends Registry<AbilityItem> {
 
-    void register(AbilityItem... items);
 
 }
