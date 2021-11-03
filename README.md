@@ -10,6 +10,23 @@ a new KitPvP project of some sorts, I can use this framework as a starting base 
 
 This framework contains the following features
 
+### Table of Contents
+* [Easy to use API](https://github.com/NegativeKB/KitPvP-Framework#easy-to-use-api)
+* [Profiles](https://github.com/NegativeKB/KitPvP-Framework#profiles)
+* [Region](https://github.com/NegativeKB/KitPvP-Framework#region)
+* [Cosmetics](https://github.com/NegativeKB/KitPvP-Framework#cosmetics)
+    * [Kill Effects](https://github.com/NegativeKB/KitPvP-Framework#kill-effects)
+    * [Kill Messages](https://github.com/NegativeKB/KitPvP-Framework#kill-messages)
+    * [Kill Sounds](https://github.com/NegativeKB/KitPvP-Framework#kill-sounds)
+    * [Projectile Trails](https://github.com/NegativeKB/KitPvP-Framework#projectile-trails)
+* [Ability Items](https://github.com/NegativeKB/KitPvP-Framework#ability-items)
+* [Command API](https://github.com/NegativeKB/KitPvP-Framework#easy-command-api)
+* [GUI API](https://github.com/NegativeKB/KitPvP-Framework#easy-gui-api)
+* [Spawn System](https://github.com/NegativeKB/KitPvP-Framework#spawn-system)
+* [Placeholders](https://github.com/NegativeKB/KitPvP-Framework#dynamic-placeholder-system)
+* [Warp System](https://github.com/NegativeKB/KitPvP-Framework#warp-system)
+* [Combat Tag System](https://github.com/NegativeKB/KitPvP-Framework#combat-tag)
+
 ### Easy to use API
 
 The internal API is crucial for the plugin to work. It is how most classes access features such as Profiles.
