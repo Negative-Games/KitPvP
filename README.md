@@ -39,7 +39,7 @@ KitPvPAPI api=KitPvPAPI.getInstance();
 
 // Example
 // Get the manager for Profiles
-        ProfileManager profileManager=api.getProfileManager();
+ProfileManager profileManager=api.getProfileManager();
 ```
 
 ### Profiles
@@ -66,7 +66,7 @@ WorldGuard. You can use it internally to determine custom conditions for any pie
 
 ### Cosmetics
 
-Cosmetics are a non pay-to-win way for servers to monetize their KitPvP gamemode. This framework contains 3 types of
+Cosmetics are a non pay-to-win way for servers to monetize their KitPvP gamemode. This framework contains 4 types of
 Cosmetics.
 
 #### Kill Effects
@@ -85,7 +85,7 @@ When you kill a player it will send the killer the corresponding sound. The soun
 
 #### Projectile Trails
 
-When shooting a projectile it will run the corresponding code. The function is defined inside th e code.
+When shooting a projectile it will run the corresponding code. The function is defined inside the code.
 
 ### Ability Items
 
@@ -136,7 +136,7 @@ can Warp or go to Spawn.
 
 ### Cooldown System
 
-This framework has a cooldown system where you can add any type of cooldown and make the according checks in your code and it should work!
+This framework has a cooldown system where you can add any type of cooldown and make the according checks in your code, and it should work!
 
 ## Notice
 
