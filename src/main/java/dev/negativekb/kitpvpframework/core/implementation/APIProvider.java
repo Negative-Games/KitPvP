@@ -30,7 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
-public class APIImpl extends KitPvPAPI {
+public class APIProvider extends KitPvPAPI {
 
     private final ProfileManager profileManager;
     private final AbilityItemManager abilityItemManager;
@@ -41,23 +41,23 @@ public class APIImpl extends KitPvPAPI {
 
     private final ArrayList<Object> disableableCache = new ArrayList<>();
 
-    public APIImpl(JavaPlugin plugin) {
-        regionManager = new RegionManagerImpl(plugin);
+    public APIProvider(JavaPlugin plugin) {
+        regionManager = new RegionManagerProvider(plugin);
         attemptAddDisableable(regionManager);
 
-        profileManager = new ProfileManagerImpl(plugin);
+        profileManager = new ProfileManagerProvider(plugin);
         attemptAddDisableable(profileManager);
 
-        abilityItemManager = new AbilityItemManagerImpl();
+        abilityItemManager = new AbilityItemManagerProvider();
         attemptAddDisableable(abilityItemManager);
 
-        cosmeticManager = new CosmeticManagerImpl();
+        cosmeticManager = new CosmeticManagerProvider();
         attemptAddDisableable(cosmeticManager);
 
-        kitManager = new KitManagerImpl();
+        kitManager = new KitManagerProvider();
         attemptAddDisableable(kitManager);
 
-        combatManager = new CombatManagerImpl(plugin);
+        combatManager = new CombatManagerProvider(plugin);
         attemptAddDisableable(combatManager);
     }
 

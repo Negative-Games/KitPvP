@@ -33,7 +33,7 @@ import dev.negativekb.kitpvpframework.core.structure.cosmetic.killsound.KillSoun
 
 import java.util.Arrays;
 
-public class CosmeticRegistryImpl implements CosmeticRegistry {
+public class CosmeticRegistryProvider implements CosmeticRegistry {
     @Override
     public void register(Object... clazzes) {
         CosmeticManager manager = KitPvPAPI.getInstance().getCosmeticManager();

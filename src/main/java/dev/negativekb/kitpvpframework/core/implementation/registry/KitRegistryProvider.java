@@ -22,46 +22,21 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.core.implementation;
+package dev.negativekb.kitpvpframework.core.implementation.registry;
 
 import dev.negativekb.kitpvpframework.api.KitManager;
+import dev.negativekb.kitpvpframework.api.KitPvPAPI;
+import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
 import dev.negativekb.kitpvpframework.kits.Kit;
-import dev.negativekb.kitpvpframework.kits.Kits;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Arrays;
 
-public class KitManagerImpl implements KitManager {
-
-    private final ArrayList<Kit> kits = new ArrayList<>();
-
+public class KitRegistryProvider implements KitRegistry {
     @Override
-    public void register(Kit kit) {
-        kits.add(kit);
-    }
+    public void register(Kit... kits) {
+        KitPvPAPI api = KitPvPAPI.getInstance();
+        KitManager kitManager = api.getKitManager();
 
-    @Override
-    public void unRegister(Kit kit) {
-        kits.remove(kit);
-    }
-
-    @Override
-    public void unRegister(Kits type) {
-        type.getKit().ifPresent(kits::remove);
-    }
-
-    @Override
-    public Optional<Kit> getKit(Kits type) {
-        return kits.stream().filter(kit -> kit.getType().equals(type)).findFirst();
-    }
-
-    @Override
-    public ArrayList<Kit> getKits() {
-        return kits;
-    }
-
-    @Override
-    public void onDisable() {
-        getKits().forEach(Kit::onDisable);
+        Arrays.stream(kits).forEach(kitManager::register);
     }
 }

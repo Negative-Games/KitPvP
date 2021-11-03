@@ -32,7 +32,7 @@ import dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail.Pr
 
 import java.util.ArrayList;
 
-public class CosmeticManagerImpl implements CosmeticManager {
+public class CosmeticManagerProvider implements CosmeticManager {
 
     private final ArrayList<KillEffect> killEffects = new ArrayList<>();
     private final ArrayList<KillMessage> killMessages = new ArrayList<>();

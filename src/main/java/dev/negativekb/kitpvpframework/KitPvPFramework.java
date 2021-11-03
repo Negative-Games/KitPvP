@@ -31,7 +31,7 @@ import dev.negativekb.kitpvpframework.commands.kits.CommandViewKit;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSetSpawn;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSpawn;
 import dev.negativekb.kitpvpframework.core.Locale;
-import dev.negativekb.kitpvpframework.core.implementation.APIImpl;
+import dev.negativekb.kitpvpframework.core.implementation.APIProvider;
 import dev.negativekb.kitpvpframework.core.implementation.registry.*;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect.items.BloodExplosionKillEffect;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.killmessage.items.DefaultKillMessage;
@@ -58,13 +58,13 @@ public final class KitPvPFramework extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
-        new APIImpl(this);
+        new APIProvider(this);
 
-        CommandRegistry commandRegistry = new CommandRegisterImpl();
-        ListenerRegistry listenerRegistry = new ListenerRegisterImpl(this);
-        CosmeticRegistry cosmeticRegistry = new CosmeticRegistryImpl();
-        KitRegistry kitRegistry = new KitRegistryImpl();
-        AbilityItemRegistry abilityItemRegistry = new AbilityItemRegistryImpl();
+        CommandRegistry commandRegistry = new CommandRegisterProvider();
+        ListenerRegistry listenerRegistry = new ListenerRegisterProvider(this);
+        CosmeticRegistry cosmeticRegistry = new CosmeticRegistryProvider();
+        KitRegistry kitRegistry = new KitRegistryProvider();
+        AbilityItemRegistry abilityItemRegistry = new AbilityItemRegistryProvider();
 
         commandRegistry.register(
                 new CommandKit(),
