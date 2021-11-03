@@ -45,6 +45,8 @@ import java.util.List;
 @Getter
 public enum Locale {
 
+    CANNOT_DO_IN_COMBAT(Collections.singletonList("&cYou cannot do this while in Combat!")),
+
     // Commands
     COMMAND_DISABLED(Collections.singletonList("&cThis command is disabled.")),
     COMMAND_CANNOT_DO_THIS(Collections.singletonList("&cYou cannot do this.")),

@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.commands.warps;
 
+import dev.negativekb.kitpvpframework.api.CombatManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
 import dev.negativekb.kitpvpframework.api.RegionManager;
 import dev.negativekb.kitpvpframework.api.WarpManager;
@@ -46,11 +47,13 @@ public class CommandWarp extends Command {
 
     private final WarpManager warpManager;
     private final RegionManager regionManager;
+    private final CombatManager combatManager;
 
     public CommandWarp() {
         KitPvPAPI api = KitPvPAPI.getInstance();
         warpManager = api.getWarpManager();
         regionManager = api.getRegionManager();
+        combatManager = api.getCombatManager();
 
         setTabComplete((sender, args) -> {
             // Send all warp names in tab-complete
@@ -93,6 +96,12 @@ public class CommandWarp extends Command {
                 .findFirst();
 
         Warp theWarp = warp.get();
+
+        boolean inCombat = combatManager.isInCombat(player);
+        if (inCombat) {
+            CANNOT_DO_IN_COMBAT.send(player);
+            return;
+        }
 
         // Permission check
         if (theWarp.getPermission().isPresent()){
