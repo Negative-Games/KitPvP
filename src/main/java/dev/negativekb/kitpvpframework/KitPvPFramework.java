@@ -30,6 +30,9 @@ import dev.negativekb.kitpvpframework.commands.kits.CommandKit;
 import dev.negativekb.kitpvpframework.commands.kits.CommandViewKit;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSetSpawn;
 import dev.negativekb.kitpvpframework.commands.spawn.CommandSpawn;
+import dev.negativekb.kitpvpframework.commands.warps.CommandDeleteWarp;
+import dev.negativekb.kitpvpframework.commands.warps.CommandSetWarp;
+import dev.negativekb.kitpvpframework.commands.warps.CommandWarp;
 import dev.negativekb.kitpvpframework.core.Locale;
 import dev.negativekb.kitpvpframework.core.implementation.APIProvider;
 import dev.negativekb.kitpvpframework.core.implementation.registry.*;
@@ -70,14 +73,17 @@ public final class KitPvPFramework extends JavaPlugin {
                 new CommandKit(),
                 new CommandViewKit(),
                 new CommandSpawn(),
-                new CommandSetSpawn()
+                new CommandSetSpawn(),
+                new CommandDeleteWarp(),
+                new CommandSetWarp(),
+                new CommandWarp()
         );
 
         listenerRegistry.register(
                 new GUIListener(),
                 new PlayerListener(),
                 new ProfileInitializerListener(),
-                new PlayerRegionListener(this)
+                new PlayerRegionListener()
         );
 
         cosmeticRegistry.register(

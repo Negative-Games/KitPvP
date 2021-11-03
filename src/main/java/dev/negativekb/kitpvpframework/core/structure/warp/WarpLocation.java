@@ -22,41 +22,27 @@
  * SOFTWARE.
  */
 
-package dev.negativekb.kitpvpframework.api;
+package dev.negativekb.kitpvpframework.core.structure.warp;
 
-import dev.negativekb.kitpvpframework.api.options.Disableable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
-/**
- * KitPvP API Module
- *
- * @author Negative
- * @since October 27th, 2021
- * <p>
- * This module is used to access the main features of the plugin.
- */
-public abstract class KitPvPAPI implements Disableable {
+@Data
+@AllArgsConstructor
+public class WarpLocation {
 
-    @Getter
-    @Setter
-    private static KitPvPAPI instance;
+    private String world;
+    private double x;
+    private double y;
+    private double z;
+    private float yaw;
+    private float pitch;
 
-    public abstract ProfileManager getProfileManager();
 
-    public abstract AbilityItemManager getAbilityItemManager();
 
-    public abstract CosmeticManager getCosmeticManager();
-
-    public abstract KitManager getKitManager();
-
-    public abstract CombatManager getCombatManager();
-
-    public abstract RegionManager getRegionManager();
-
-    public abstract WarpManager getWarpManager();
-
-    @Override
-    public abstract void onDisable();
-
+    public Location toLocation() {
+        return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
+    }
 }
