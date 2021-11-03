@@ -37,12 +37,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ProfileManagerImpl extends ObjectCache<Profile> implements ProfileManager {
+public class ProfileManagerProvider extends ObjectCache<Profile> implements ProfileManager {
 
     private ArrayList<Profile> profiles;
 
     @SneakyThrows
-    public ProfileManagerImpl(JavaPlugin plugin) {
+    public ProfileManagerProvider(JavaPlugin plugin) {
         super(plugin.getDataFolder().getPath() + "/data/profiles.json", Profile[].class);
 
         profiles = load();

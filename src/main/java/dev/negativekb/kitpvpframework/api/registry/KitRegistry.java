@@ -29,8 +29,6 @@ import dev.negativekb.kitpvpframework.kits.Kit;
 /**
  *
  */
-public interface KitRegistry {
-
-    void register(Kit... kits);
+public interface KitRegistry extends Registry<Kit> {
 
 }

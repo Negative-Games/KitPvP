@@ -39,10 +39,10 @@ import java.util.stream.Collectors;
 
 import static dev.negativekb.kitpvpframework.core.Locale.*;
 
-public class CombatManagerImpl implements CombatManager {
+public class CombatManagerProvider implements CombatManager {
 
     private final HashMap<UUID, Long> combatMap = new HashMap<>();
-    public CombatManagerImpl(JavaPlugin plugin) {
+    public CombatManagerProvider(JavaPlugin plugin) {
         new CombatTagTimerTask().runTaskTimerAsynchronously(plugin, 0, 20);
     }
 

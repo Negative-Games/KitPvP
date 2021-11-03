@@ -24,19 +24,24 @@
 
 package dev.negativekb.kitpvpframework.core.implementation.registry;
 
-import dev.negativekb.kitpvpframework.api.KitManager;
+import dev.negativekb.kitpvpframework.api.AbilityItemManager;
 import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.registry.KitRegistry;
-import dev.negativekb.kitpvpframework.kits.Kit;
+import dev.negativekb.kitpvpframework.api.registry.AbilityItemRegistry;
+import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
 
 import java.util.Arrays;
 
-public class KitRegistryImpl implements KitRegistry {
-    @Override
-    public void register(Kit... kits) {
-        KitPvPAPI api = KitPvPAPI.getInstance();
-        KitManager kitManager = api.getKitManager();
+public class AbilityItemRegistryProvider implements AbilityItemRegistry {
 
-        Arrays.stream(kits).forEach(kitManager::register);
+    private final AbilityItemManager abilityItemManager;
+
+    public AbilityItemRegistryProvider() {
+        abilityItemManager = KitPvPAPI.getInstance().getAbilityItemManager();
     }
+
+    @Override
+    public void register(AbilityItem... types) {
+        Arrays.stream(types).forEach(abilityItemManager::registerItem);
+    }
+
 }

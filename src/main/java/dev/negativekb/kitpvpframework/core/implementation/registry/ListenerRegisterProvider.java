@@ -24,23 +24,25 @@
 
 package dev.negativekb.kitpvpframework.core.implementation.registry;
 
-import dev.negativekb.kitpvpframework.api.AbilityItemManager;
-import dev.negativekb.kitpvpframework.api.KitPvPAPI;
-import dev.negativekb.kitpvpframework.api.registry.AbilityItemRegistry;
-import dev.negativekb.kitpvpframework.core.structure.ability.AbilityItem;
+import dev.negativekb.kitpvpframework.api.registry.ListenerRegistry;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
-public class AbilityItemRegistryImpl implements AbilityItemRegistry {
+public class ListenerRegisterProvider implements ListenerRegistry {
 
-    private final AbilityItemManager abilityItemManager;
+    private final JavaPlugin plugin;
 
-    public AbilityItemRegistryImpl() {
-        abilityItemManager = KitPvPAPI.getInstance().getAbilityItemManager();
+    public ListenerRegisterProvider(JavaPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @Override
-    public void register(AbilityItem... items) {
-        Arrays.stream(items).forEach(abilityItemManager::registerItem);
+    public void register(Listener... listeners) {
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        Arrays.stream(listeners).forEach(listener -> pluginManager.registerEvents(listener, plugin));
     }
 }
