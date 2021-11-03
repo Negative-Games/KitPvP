@@ -86,16 +86,13 @@ public class PlayerRegionListener implements Listener {
         Player player = event.getPlayer();
         Region region = event.getRegion();
 
-        String enterMessage = region.getFlagString(RegionFlag.ENTER_MESSAGE);
-        if (enterMessage != null) {
-            new Message(enterMessage).replace("%player%", player.getName()).send(player);
-        }
+        region.getFlagString(RegionFlag.ENTER_MESSAGE)
+                .ifPresent(msg -> new Message(msg).replace("%player%", player.getName()).send(player));
 
-        String enterCommand = region.getFlagString(RegionFlag.ENTER_COMMAND);
-        if (enterCommand != null) {
-            String message = new Message(enterMessage).replace("%player%", player.getName()).getMessage();
+        region.getFlagString(RegionFlag.ENTER_COMMAND).ifPresent(cmd -> {
+            String message = new Message(cmd).replace("%player%", player.getName()).getMessage();
             Utils.executeConsoleCommand(message);
-        }
+        });
     }
 
     @EventHandler
@@ -103,16 +100,13 @@ public class PlayerRegionListener implements Listener {
         Player player = event.getPlayer();
         Region region = event.getRegion();
 
-        String exitMessage = region.getFlagString(RegionFlag.EXIT_MESSAGE);
-        if (exitMessage != null) {
-            new Message(exitMessage).replace("%player%", player.getName()).send(player);
-        }
+        region.getFlagString(RegionFlag.EXIT_MESSAGE)
+                .ifPresent(msg -> new Message(msg).replace("%player%", player.getName()).send(player));
 
-        String exitCommand = region.getFlagString(RegionFlag.EXIT_COMMAND);
-        if (exitCommand != null) {
-            String command = new Message(exitCommand).replace("%player%", player.getName()).getMessage();
-            Utils.executeConsoleCommand(command);
-        }
+        region.getFlagString(RegionFlag.EXIT_COMMAND).ifPresent(cmd -> {
+            String message = new Message(cmd).replace("%player%", player.getName()).getMessage();
+            Utils.executeConsoleCommand(message);
+        });
     }
 }
 
