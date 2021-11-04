@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.kits;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.util.UtilPlayer;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,7 +44,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public abstract class Kit {
+public abstract class Kit implements Disableable {
 
     @Getter
     private final Kits type;
@@ -179,5 +180,4 @@ public abstract class Kit {
         Optional.ofNullable(damagePlayerEventConsumer).ifPresent(function -> function.accept(event));
     }
 
-    public abstract void onDisable();
 }

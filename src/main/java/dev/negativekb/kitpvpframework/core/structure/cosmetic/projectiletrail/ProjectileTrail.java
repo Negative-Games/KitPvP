@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.core.structure.cosmetic.projectiletrail;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.Cosmetic;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.CosmeticType;
 import lombok.Getter;
@@ -33,7 +34,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 
 @RequiredArgsConstructor
-public abstract class ProjectileTrail implements Cosmetic {
+public abstract class ProjectileTrail implements Cosmetic, Disableable {
 
     @Getter
     private final ProjectileTrailType type;

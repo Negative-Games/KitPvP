@@ -44,4 +44,9 @@ public class HeartsProjectileTrail extends ProjectileTrail {
     public ItemStack getIcon() {
         return null;
     }
+
+    @Override
+    public void onDisable() {
+
+    }
 }

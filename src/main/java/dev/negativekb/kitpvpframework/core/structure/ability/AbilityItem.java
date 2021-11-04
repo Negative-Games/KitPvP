@@ -25,15 +25,17 @@
 package dev.negativekb.kitpvpframework.core.structure.ability;
 
 import dev.negativekb.kitpvpframework.abilityitems.AbilityItemType;
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import lombok.Getter;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
-public abstract class AbilityItem {
+public abstract class AbilityItem implements Disableable {
 
     @Getter
     private final AbilityItemType type;
@@ -70,40 +72,26 @@ public abstract class AbilityItem {
     }
 
     public void onRightClick(PlayerInteractEvent event) {
-        if (rightClickEventConsumer == null)
-            return;
-
-        rightClickEventConsumer.accept(event);
+        Optional.ofNullable(rightClickEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void onLeftClick(PlayerInteractEvent event) {
-        if (leftClickEventConsumer == null)
-            return;
-
-        leftClickEventConsumer.accept(event);
+        Optional.ofNullable(leftClickEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void onRightClickEntity(PlayerInteractAtEntityEvent event) {
-        if (rightClickEntityEventConsumer == null)
-            return;
-
-        rightClickEntityEventConsumer.accept(event);
+        Optional.ofNullable(rightClickEntityEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
-        if (damagePlayerEventConsumer == null)
-            return;
-
-        damagePlayerEventConsumer.accept(event);
+        Optional.ofNullable(damagePlayerEventConsumer).ifPresent(function -> function.accept(event));
     }
 
     public void onInteract(PlayerInteractEvent event) {
-        if (interactEventConsumer == null)
-            return;
-
-        interactEventConsumer.accept(event);
+        Optional.ofNullable(interactEventConsumer).ifPresent(function -> function.accept(event));
     }
 
+    @Override
     public abstract void onDisable();
 
 }
