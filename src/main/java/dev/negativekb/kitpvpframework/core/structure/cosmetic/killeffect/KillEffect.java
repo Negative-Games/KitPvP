@@ -24,6 +24,7 @@
 
 package dev.negativekb.kitpvpframework.core.structure.cosmetic.killeffect;
 
+import dev.negativekb.kitpvpframework.api.options.Disableable;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.Cosmetic;
 import dev.negativekb.kitpvpframework.core.structure.cosmetic.CosmeticType;
 import lombok.Getter;
@@ -33,14 +34,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @RequiredArgsConstructor
-public abstract class KillEffect implements Cosmetic {
+public abstract class KillEffect implements Cosmetic, Disableable {
 
     @Getter
     private final KillEffectType type;
 
     public abstract void apply(Player killer, Player victim, Location location);
-
-    public abstract void onDisable();
 
     @Override
     public String getID() {

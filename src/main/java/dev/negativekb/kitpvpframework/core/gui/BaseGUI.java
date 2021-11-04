@@ -32,6 +32,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.Optional;
+
 public class BaseGUI implements InventoryHolder {
 
     @Getter
@@ -51,9 +53,7 @@ public class BaseGUI implements InventoryHolder {
 
         gui.getActiveInventories().remove(player);
 
-        BukkitTask autoRefreshTask = gui.getAutoRefreshTask();
-        if (autoRefreshTask != null)
-            autoRefreshTask.cancel();
+        Optional.ofNullable(gui.getAutoRefreshTask()).ifPresent(BukkitTask::cancel);
     }
 
 }
