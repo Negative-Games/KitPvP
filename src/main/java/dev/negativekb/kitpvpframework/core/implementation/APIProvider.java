@@ -46,6 +46,8 @@ public class APIProvider extends KitPvPAPI {
     private final ArrayList<Object> disableableCache = new ArrayList<>();
 
     public APIProvider(JavaPlugin plugin) {
+        setInstance(this);
+
         regionManager = new RegionManagerProvider(plugin);
         attemptAddDisableable(regionManager);
 
