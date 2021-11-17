@@ -30,6 +30,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings("all") // Made uding my phone!
 public abstract class ObjectCache<T> {
 
     private final String path;
