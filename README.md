@@ -3,7 +3,8 @@
 This repository contains a framework built for KitPvP plugins. The main purpose of this project is if I wanted to create
 a new KitPvP project of some sorts, I can use this framework as a starting base for the plugin I plan to make.
 
-[![CodeFactor](https://www.codefactor.io/repository/github/negativekb/kitpvp-framework/badge)](https://www.codefactor.io/repository/github/negativekb/kitpvp-framework) [![Lines Of Code](https://tokei.rs/b1/github/NegativeKB/KitPvP-Framework?category=code)](https://github.com/NegativeKB/KitPvP-Framework) [![Discord](https://img.shields.io/discord/822346437240815656?label=discord&logo=discord)](https://discord.gg/uWQRGB662c)
+[![CodeFactor](https://www.codefactor.io/repository/github/negative-games/kitpvp/badge)](https://www.codefactor.io/repository/github/negative-games/kitpvp)
+[![Lines Of Code](https://tokei.rs/b1/github/NegativeKB/KitPvP-Framework?category=code)](https://github.com/NegativeKB/KitPvP-Framework) [![Discord](https://img.shields.io/discord/822346437240815656?label=discord&logo=discord)](https://discord.gg/uWQRGB662c)
 
 ## Feature List
 
